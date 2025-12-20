@@ -1,0 +1,954 @@
+2025-12-16T16:55:26,318 INFO [main] org.hibernate.validator.internal.util.Version - HV000001: Hibernate Validator 6.2.5.Final
+2025-12-16T16:55:26,751 INFO [main] org.apache.druid.guice.ExtensionsLoader - Loading extension [druid-histogram], jars: druid-histogram-34.0.0.jar. Druid extension dependencies [[]]
+2025-12-16T16:55:26,757 INFO [main] org.apache.druid.guice.ExtensionsLoader - Loading extension [druid-datasketches], jars: druid-datasketches-34.0.0.jar, commons-math3-3.6.1.jar. Druid extension dependencies [[]]
+2025-12-16T16:55:26,760 INFO [main] org.apache.druid.guice.ExtensionsLoader - Loading extension [druid-lookups-cached-global], jars: mapdb-1.0.8.jar, druid-lookups-cached-global-34.0.0.jar. Druid extension dependencies [[]]
+2025-12-16T16:55:26,765 INFO [main] org.apache.druid.guice.ExtensionsLoader - Loading extension [postgresql-metadata-storage], jars: checker-qual-3.42.0.jar, postgresql-42.7.2.jar, postgresql-metadata-storage-34.0.0.jar. Druid extension dependencies [[]]
+2025-12-16T16:55:26,767 INFO [main] org.apache.druid.guice.ExtensionsLoader - Loading extension [druid-multi-stage-query], jars: druid-multi-stage-query-34.0.0.jar. Druid extension dependencies [[]]
+2025-12-16T16:55:26,774 INFO [main] org.apache.druid.guice.ExtensionsLoader - Loading extension [druid-kafka-indexing-service], jars: druid-kafka-indexing-service-34.0.0.jar, kafka-clients-3.9.1.jar, snappy-java-1.1.10.7.jar, lz4-java-1.8.0.jar, zstd-jni-1.5.2-3.jar. Druid extension dependencies [[]]
+2025-12-16T16:55:26,949 INFO [main] org.apache.druid.guice.ExtensionsLoader - Loading extension [druid-histogram], jars: druid-histogram-34.0.0.jar. Druid extension dependencies [[]]
+2025-12-16T16:55:26,952 INFO [main] org.apache.druid.guice.ExtensionsLoader - Loading extension [druid-datasketches], jars: druid-datasketches-34.0.0.jar, commons-math3-3.6.1.jar. Druid extension dependencies [[]]
+2025-12-16T16:55:26,957 INFO [main] org.apache.druid.guice.ExtensionsLoader - Loading extension [druid-lookups-cached-global], jars: mapdb-1.0.8.jar, druid-lookups-cached-global-34.0.0.jar. Druid extension dependencies [[]]
+2025-12-16T16:55:26,959 INFO [main] org.apache.druid.guice.ExtensionsLoader - Loading extension [postgresql-metadata-storage], jars: checker-qual-3.42.0.jar, postgresql-42.7.2.jar, postgresql-metadata-storage-34.0.0.jar. Druid extension dependencies [[]]
+2025-12-16T16:55:26,960 INFO [main] org.apache.druid.guice.ExtensionsLoader - Loading extension [druid-multi-stage-query], jars: druid-multi-stage-query-34.0.0.jar. Druid extension dependencies [[]]
+2025-12-16T16:55:26,973 INFO [main] org.apache.druid.guice.ExtensionsLoader - Loading extension [druid-kafka-indexing-service], jars: druid-kafka-indexing-service-34.0.0.jar, kafka-clients-3.9.1.jar, snappy-java-1.1.10.7.jar, lz4-java-1.8.0.jar, zstd-jni-1.5.2-3.jar. Druid extension dependencies [[]]
+2025-12-16T16:55:27,659 INFO [main] org.apache.druid.guice.JsonConfigurator - Skipping property [druid.emitter.logging.logLevel]: one of it's prefixes [druid] is also used as a property key.
+2025-12-16T16:55:27,687 INFO [main] org.apache.druid.server.emitter.EmitterModule - Using emitter [NoopEmitter{}] for metrics and alerts, with dimensions [{version=34.0.0}].
+2025-12-16T16:55:28,002 INFO [main] org.apache.druid.server.metrics.MetricsModule - Loaded 5 monitors: org.apache.druid.java.util.metrics.JvmMonitor, org.apache.druid.server.metrics.ServiceStatusMonitor, org.apache.druid.query.ExecutorServiceMonitor, org.apache.druid.curator.DruidConnectionStateListener, org.apache.druid.server.initialization.jetty.JettyServerModule$JettyMonitor
+2025-12-16T16:55:28,009 INFO [main] org.apache.druid.cli.CliPeon - Starting up with processors [4], memory [1,073,741,824], maxMemory [1,073,741,824], directMemory [3,221,225,472]. Properties follow.
+2025-12-16T16:55:28,010 INFO [main] org.apache.druid.cli.CliPeon - * attemptId: 1
+2025-12-16T16:55:28,010 INFO [main] org.apache.druid.cli.CliPeon - * druid.emitter: noop
+2025-12-16T16:55:28,010 INFO [main] org.apache.druid.cli.CliPeon - * druid.emitter.logging.logLevel: debug
+2025-12-16T16:55:28,010 INFO [main] org.apache.druid.cli.CliPeon - * druid.extensions.loadList: ["druid-histogram","druid-datasketches","druid-lookups-cached-global","postgresql-metadata-storage","druid-multi-stage-query","druid-kafka-indexing-service"]
+2025-12-16T16:55:28,010 INFO [main] org.apache.druid.cli.CliPeon - * druid.host: 172.20.0.5
+2025-12-16T16:55:28,010 INFO [main] org.apache.druid.cli.CliPeon - * druid.indexer.fork.property.druid.processing.buffer.sizeBytes: 256MiB
+2025-12-16T16:55:28,010 INFO [main] org.apache.druid.cli.CliPeon - * druid.indexer.logs.directory: /opt/shared/indexing-logs
+2025-12-16T16:55:28,010 INFO [main] org.apache.druid.cli.CliPeon - * druid.indexer.logs.type: file
+2025-12-16T16:55:28,010 INFO [main] org.apache.druid.cli.CliPeon - * druid.indexer.runner.javaOptsArray: ["-server", "-Xmx1g", "-Xms1g", "-XX:MaxDirectMemorySize=3g", "-Duser.timezone=UTC", "-Dfile.encoding=UTF-8", "-Djava.util.logging.manager=org.apache.logging.log4j.jul.LogManager"]
+2025-12-16T16:55:28,010 INFO [main] org.apache.druid.cli.CliPeon - * druid.indexer.task.baseTaskDir: /opt/druid/var/druid/task/slot1
+2025-12-16T16:55:28,010 INFO [main] org.apache.druid.cli.CliPeon - * druid.indexer.task.hadoopWorkingPath: var/druid/hadoop-tmp
+2025-12-16T16:55:28,010 INFO [main] org.apache.druid.cli.CliPeon - * druid.indexer.task.tmpStorageBytesPerTask: 4611686018427387903
+2025-12-16T16:55:28,010 INFO [main] org.apache.druid.cli.CliPeon - * druid.indexing.doubleStorage: double
+2025-12-16T16:55:28,010 INFO [main] org.apache.druid.cli.CliPeon - * druid.lookup.enableLookupSyncOnStartup: false
+2025-12-16T16:55:28,010 INFO [main] org.apache.druid.cli.CliPeon - * druid.metadata.storage.connector.connectURI: jdbc:postgresql://postgres:5432/druid
+2025-12-16T16:55:28,010 INFO [main] org.apache.druid.cli.CliPeon - * druid.metadata.storage.connector.host: localhost
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.metadata.storage.connector.password: <masked>
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.metadata.storage.connector.port: 1527
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.metadata.storage.connector.user: druid
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.metadata.storage.host: 
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.metadata.storage.type: postgresql
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.metrics.emitter.dimension.dataSource: clima-sudeste-raw
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.metrics.emitter.dimension.groupId: index_kafka_clima-sudeste-raw
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.metrics.emitter.dimension.taskId: index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.metrics.emitter.dimension.taskType: index_kafka
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.monitoring.monitors: ["org.apache.druid.java.util.metrics.JvmMonitor", "org.apache.druid.server.metrics.ServiceStatusMonitor"]
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.node.type: middleManager
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.plaintextPort: 8100
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.processing.buffer.sizeBytes: 256MiB
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.processing.numMergeBuffers: 2
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.processing.numThreads: 2
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.selectors.coordinator.serviceName: druid/coordinator
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.selectors.indexing.serviceName: druid/overlord
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.server.hiddenProperties: ["druid.s3.accessKey","druid.s3.secretKey","druid.metadata.storage.connector.password", "password", "key", "token", "pwd"]
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.server.http.numThreads: 12
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.service: druid/middleManager
+2025-12-16T16:55:28,011 INFO [main] org.apache.druid.cli.CliPeon - * druid.sql.enable: true
+2025-12-16T16:55:28,012 INFO [main] org.apache.druid.cli.CliPeon - * druid.sql.planner.useGroupingSetForExactDistinct: true
+2025-12-16T16:55:28,012 INFO [main] org.apache.druid.cli.CliPeon - * druid.startup.logging.logProperties: true
+2025-12-16T16:55:28,012 INFO [main] org.apache.druid.cli.CliPeon - * druid.storage.storageDirectory: /opt/shared/segments
+2025-12-16T16:55:28,012 INFO [main] org.apache.druid.cli.CliPeon - * druid.storage.type: local
+2025-12-16T16:55:28,012 INFO [main] org.apache.druid.cli.CliPeon - * druid.task.executor.enablePlaintextPort: true
+2025-12-16T16:55:28,012 INFO [main] org.apache.druid.cli.CliPeon - * druid.task.executor.enableTlsPort: false
+2025-12-16T16:55:28,012 INFO [main] org.apache.druid.cli.CliPeon - * druid.task.executor.host: 172.20.0.5
+2025-12-16T16:55:28,012 INFO [main] org.apache.druid.cli.CliPeon - * druid.task.executor.plaintextPort: 8091
+2025-12-16T16:55:28,012 INFO [main] org.apache.druid.cli.CliPeon - * druid.task.executor.service: druid/middleManager
+2025-12-16T16:55:28,012 INFO [main] org.apache.druid.cli.CliPeon - * druid.task.executor.tlsPort: -1
+2025-12-16T16:55:28,012 INFO [main] org.apache.druid.cli.CliPeon - * druid.tlsPort: -1
+2025-12-16T16:55:28,012 INFO [main] org.apache.druid.cli.CliPeon - * druid.worker.baseTaskDirs: ["var/druid/task"]
+2025-12-16T16:55:28,012 INFO [main] org.apache.druid.cli.CliPeon - * druid.worker.capacity: 2
+2025-12-16T16:55:28,012 INFO [main] org.apache.druid.cli.CliPeon - * druid.zk.paths.base: /druid
+2025-12-16T16:55:28,012 INFO [main] org.apache.druid.cli.CliPeon - * druid.zk.service.host: zookeeper
+2025-12-16T16:55:28,012 INFO [main] org.apache.druid.cli.CliPeon - * file.encoding: UTF-8
+2025-12-16T16:55:28,012 INFO [main] org.apache.druid.cli.CliPeon - * file.separator: /
+2025-12-16T16:55:28,012 INFO [main] org.apache.druid.cli.CliPeon - * java.class.path: /tmp/conf/druid/single-server/micro-quickstart/_common:/tmp/conf/druid/single-server/micro-quickstart/middleManager:lib/joni-2.1.34.jar:lib/jcodings-1.0.50.jar:lib/commons-dbcp2-2.0.1.jar:lib/airline-2.8.4.jar:lib/jackson-datatype-guava-2.18.4.jar:lib/cron-scheduler-0.1.jar:lib/jackson-dataformat-cbor-2.18.4.jar:lib/commons-beanutils-1.11.0.jar:lib/netty-codec-socks-4.1.122.Final.jar:lib/jmespath-java-1.12.784.jar:lib/calcite-core-1.37.0.jar:lib/netty-handler-4.1.122.Final.jar:lib/jboss-logging-3.4.1.Final.jar:lib/commons-codec-1.16.1.jar:lib/maven-model-builder-3.6.0.jar:lib/httpclient5-5.2.1.jar:lib/commons-collections-3.2.2.jar:lib/joda-time-2.14.0.jar:lib/xz-1.9.jar:lib/maven-resolver-spi-1.3.1.jar:lib/druid-processing-34.0.0.jar:lib/antlr4-runtime-4.5.3.jar:lib/jna-5.13.0.jar:lib/apiguardian-api-1.1.2.jar:lib/janino-3.1.11.jar:lib/maven-resolver-connector-basic-1.3.1.jar:lib/jts-core-1.19.0.jar:lib/log4j-api-2.22.1.jar:lib/jakarta.inject-api-1.0.3.jar:lib/jersey-servlet-1.19.4.jar:lib/jackson-core-2.18.4.1.jar:lib/rhino-1.7.14.jar:lib/istack-commons-runtime-3.0.11.jar:lib/maven-resolver-transport-http-1.3.1.jar:lib/google-api-client-2.2.0.jar:lib/log4j-1.2-api-2.22.1.jar:lib/jakarta.activation-1.2.2.jar:lib/jetty-util-9.4.57.v20241219.jar:lib/RoaringBitmap-0.9.49.jar:lib/maven-artifact-3.6.0.jar:lib/sigar-1.6.5.132.jar:lib/netty-buffer-4.1.122.Final.jar:lib/netty-codec-http-4.1.122.Final.jar:lib/maven-model-3.6.0.jar:lib/aws-java-sdk-kms-1.12.784.jar:lib/commons-text-1.13.1.jar:lib/jakarta.activation-api-1.2.2.jar:lib/javax.el-api-3.0.0.jar:lib/jackson-dataformat-smile-2.18.4.jar:lib/json-simple-1.1.1.jar:lib/resilience4j-bulkhead-1.3.1.jar:lib/jetty-security-9.4.57.v20241219.jar:lib/google-http-client-1.42.3.jar:lib/httpcore5-5.2.3.jar:lib/cron-utils-9.2.0.jar:lib/netty-transport-4.1.122.Final.jar:lib/ipaddress-5.3.4.jar:lib/jdbi-2.63.1.jar:lib/google-oauth-client-1.34.1.jar:lib/maven-resolver-impl-1.3.1.jar:lib/grpc-context-1.27.2.jar:lib/jetty-client-9.4.57.v20241219.jar:lib/commons-math3-3.6.1.jar:lib/commons-collections4-4.2.jar:lib/aws-java-sdk-core-1.12.784.jar:lib/zstd-jni-1.5.2-3.jar:lib/jna-platform-5.13.0.jar:lib/commons-io-2.17.0.jar:lib/gson-2.10.1.jar:lib/guice-5.1.0.jar:lib/netty-resolver-dns-4.1.122.Final.jar:lib/jcl-over-slf4j-2.0.16.jar:lib/zookeeper-jute-3.8.4.jar:lib/asm-commons-9.8.jar:lib/zookeeper-3.8.4.jar:lib/druid-server-34.0.0.jar:lib/plexus-utils-3.1.0.jar:lib/jackson-jq-0.0.10.jar:lib/google-http-client-jackson2-1.42.3.jar:lib/checker-qual-3.48.1.jar:lib/asm-9.8.jar:lib/jackson-jaxrs-smile-provider-2.18.4.jar:lib/jackson-annotations-2.18.4.jar:lib/netty-resolver-4.1.122.Final.jar:lib/jakarta.validation-api-2.0.2.jar:lib/failureaccess-1.0.1.jar:lib/jackson-module-guice-2.18.4.jar:lib/aopalliance-1.0.jar:lib/javax.inject-1.jar:lib/opencsv-4.6.jar:lib/jackson-databind-2.18.4.jar:lib/asm-tree-9.8.jar:lib/google-http-client-gson-1.42.3.jar:lib/fastutil-core-8.5.4.jar:lib/fastutil-8.5.4.jar:lib/opencensus-contrib-http-util-0.31.1.jar:lib/audience-annotations-0.12.0.jar:lib/disruptor-3.3.6.jar:lib/jetty-proxy-9.4.57.v20241219.jar:lib/httpclient-4.5.13.jar:lib/icu4j-73.2.jar:lib/js-22.3.5.jar:lib/jetty-http-9.4.57.v20241219.jar:lib/curator-x-discovery-5.8.0.jar:lib/datasketches-memory-2.2.0.jar:lib/commons-compiler-3.1.11.jar:lib/classmate-1.5.1.jar:lib/jersey-core-1.19.4.jar:lib/opencensus-api-0.31.1.jar:lib/log4j-slf4j2-impl-2.22.1.jar:lib/derbynet-10.14.2.0.jar:lib/jetty-server-9.4.57.v20241219.jar:lib/jaxb-runtime-2.3.3.jar:lib/lz4-java-1.8.0.jar:lib/curator-client-5.8.0.jar:lib/datasketches-java-4.2.0.jar:lib/commons-logging-1.3.5.jar:lib/avatica-core-1.25.0.jar:lib/web-console-34.0.0.jar:lib/jetty-servlets-9.4.57.v20241219.jar:lib/aws-java-sdk-ec2-1.12.784.jar:lib/jakarta.el-3.0.4.jar:lib/druid-indexing-service-34.0.0.jar:lib/log4j-jul-2.22.1.jar:lib/snappy-java-1.1.10.7.jar:lib/fastutil-extra-8.5.4.jar:lib/commons-pool2-2.2.jar:lib/netty-handler-proxy-4.1.122.Final.jar:lib/httpcore5-h2-5.2.jar:lib/httpcore-4.4.16.jar:lib/jackson-jaxrs-base-2.18.4.jar:lib/metrics-core-4.2.22.jar:lib/plexus-component-annotations-1.7.1.jar:lib/plexus-interpolation-1.25.jar:lib/derbyclient-10.14.2.0.jar:lib/uzaygezen-core-0.2.jar:lib/netty-transport-native-unix-common-4.1.122.Final.jar:lib/hibernate-validator-6.2.5.Final.jar:lib/jetty-servlet-9.4.57.v20241219.jar:lib/accessors-smart-2.5.2.jar:lib/regex-22.3.5.jar:lib/aws-java-sdk-s3-1.12.784.jar:lib/druid-gcp-common-34.0.0.jar:lib/derby-10.14.2.0.jar:lib/javax.servlet-api-3.1.0.jar:lib/maven-resolver-util-1.3.1.jar:lib/druid-indexing-hadoop-34.0.0.jar:lib/airline-io-2.8.4.jar:lib/vavr-match-0.10.2.jar:lib/maven-resolver-provider-3.6.0.jar:lib/js-scriptengine-22.3.5.jar:lib/calcite-linq4j-1.37.0.jar:lib/slf4j-api-2.0.16.jar:lib/jetty-io-9.4.57.v20241219.jar:lib/curator-recipes-5.8.0.jar:lib/jts-io-common-1.19.0.jar:lib/jsr311-api-1.1.1.jar:lib/compress-lzf-1.0.4.jar:lib/json-path-2.9.0.jar:lib/elasticache-java-cluster-client-1.2.0.jar:lib/jackson-module-jaxb-annotations-2.18.4.jar:lib/guice-servlet-5.1.0.jar:lib/commons-lang3-3.17.0.jar:lib/jackson-datatype-joda-2.18.4.jar:lib/guava-32.1.3-jre.jar:lib/maven-repository-metadata-3.6.0.jar:lib/json-smart-2.5.2.jar:lib/graal-sdk-22.3.5.jar:lib/jetty-util-ajax-9.4.57.v20241219.jar:lib/caffeine-2.8.0.jar:lib/jakarta.xml.bind-api-2.3.3.jar:lib/aws-java-sdk-sts-1.12.784.jar:lib/netty-common-4.1.122.Final.jar:lib/avatica-metrics-1.25.0.jar:lib/maven-builder-support-3.6.0.jar:lib/google-http-client-apache-v2-1.42.3.jar:lib/guice-assistedinject-5.1.0.jar:lib/jersey-guice-1.19.4.jar:lib/jackson-jaxrs-json-provider-2.18.4.jar:lib/druid-aws-common-34.0.0.jar:lib/error_prone_annotations-2.35.1.jar:lib/jetty-rewrite-9.4.57.v20241219.jar:lib/maven-resolver-api-1.3.1.jar:lib/druid-services-34.0.0.jar:lib/jetty-continuation-9.4.57.v20241219.jar:lib/oshi-core-6.4.4.jar:lib/log4j-core-2.22.1.jar:lib/txw2-2.3.3.jar:lib/protobuf-java-3.25.5.jar:lib/j2objc-annotations-2.8.jar:lib/vavr-0.10.2.jar:lib/commons-compress-1.26.0.jar:lib/annotations-26.0.2.jar:lib/jersey-server-1.19.4.jar:lib/truffle-api-22.3.5.jar:lib/netty-codec-dns-4.1.122.Final.jar:lib/proj4j-1.2.2.jar:lib/resilience4j-core-1.3.1.jar:lib/jsr305-3.0.2.jar:lib/druid-sql-34.0.0.jar:lib/shims-0.9.49.jar:lib/async-http-client-3.0.2.jar:lib/curator-framework-5.8.0.jar:lib/avatica-server-1.25.0.jar:lib/netty-3.10.6.Final.jar:lib/netty-codec-4.1.122.Final.jar:
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.class.version: 61.0
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.home: /usr/lib/jvm/java-17-openjdk-amd64
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.io.tmpdir: var/tmp
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.library.path: /usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.runtime.name: OpenJDK Runtime Environment
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.runtime.version: 17.0.15+6-Debian-1deb12u1
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.specification.maintenance.version: 1
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.specification.name: Java Platform API Specification
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.specification.vendor: Oracle Corporation
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.specification.version: 17
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.util.logging.manager: org.apache.logging.log4j.jul.LogManager
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.vendor: Debian
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.vendor.url: https://tracker.debian.org/openjdk-17
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.vendor.url.bug: https://bugs.debian.org/openjdk-17
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.version: 17.0.15
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.version.date: 2025-04-15
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.vm.compressedOopsMode: 32-bit
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.vm.info: mixed mode, sharing
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.vm.name: OpenJDK 64-Bit Server VM
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.vm.specification.name: Java Virtual Machine Specification
+2025-12-16T16:55:28,013 INFO [main] org.apache.druid.cli.CliPeon - * java.vm.specification.vendor: Oracle Corporation
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * java.vm.specification.version: 17
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * java.vm.vendor: Debian
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * java.vm.version: 17.0.15+6-Debian-1deb12u1
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * jdk.debug: release
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * line.separator: 
+
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * log4j.shutdownCallbackRegistry: org.apache.druid.common.config.Log4jShutdown
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * log4j.shutdownHookEnabled: true
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * log4j2.configurationFactory: org.apache.druid.indexing.common.tasklogs.ConsoleLoggingEnforcementConfigurationFactory
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * log4j2.is.webapp: false
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * native.encoding: UTF-8
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * os.arch: amd64
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * os.name: Linux
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * os.version: 6.14.0-37-generic
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * path.separator: :
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * sun.arch.data.model: 64
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * sun.boot.library.path: /usr/lib/jvm/java-17-openjdk-amd64/lib
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * sun.cpu.endian: little
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * sun.io.unicode.encoding: UnicodeLittle
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * sun.java.command: org.apache.druid.cli.Main internal peon var/druid/task/slot1/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl 1 --loadBroadcastSegments true --loadBroadcastDatasourceMode ALL
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * sun.java.launcher: SUN_STANDARD
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * sun.jnu.encoding: UTF-8
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * sun.management.compiler: HotSpot 64-Bit Tiered Compilers
+2025-12-16T16:55:28,014 INFO [main] org.apache.druid.cli.CliPeon - * user.dir: /opt/druid
+2025-12-16T16:55:28,015 INFO [main] org.apache.druid.cli.CliPeon - * user.home: /root
+2025-12-16T16:55:28,015 INFO [main] org.apache.druid.cli.CliPeon - * user.language: en
+2025-12-16T16:55:28,015 INFO [main] org.apache.druid.cli.CliPeon - * user.name: root
+2025-12-16T16:55:28,015 INFO [main] org.apache.druid.cli.CliPeon - * user.timezone: UTC
+2025-12-16T16:55:28,175 INFO [main] org.apache.druid.query.DruidProcessingConfig - Detected max direct memory size of [3,221,225,472] bytes
+2025-12-16T16:55:28,192 INFO [main] org.apache.druid.segment.loading.SegmentLocalCacheManager - Using storage location strategy[LeastBytesUsedStorageLocationSelectorStrategy].
+2025-12-16T16:55:28,192 INFO [main] org.apache.druid.segment.loading.SegmentLocalCacheManager - Number of threads to load segments into page cache - on bootstrap: [0], on download: [0].
+2025-12-16T16:55:28,243 INFO [main] org.apache.druid.guice.StorageNodeModule - Segment cache not configured on ServerType [indexer-executor]. It will not be assignable for segment placement
+2025-12-16T16:55:28,287 INFO [main] org.eclipse.jetty.util.log - Logging initialized @3196ms to org.eclipse.jetty.util.log.Slf4jLog
+2025-12-16T16:55:28,296 INFO [main] org.apache.druid.server.initialization.jetty.JettyServerModule - Creating http connector with port [8100]
+2025-12-16T16:55:28,379 WARN [main] org.eclipse.jetty.server.handler.gzip.GzipHandler - minGzipSize of 0 is inefficient for short content, break even is size 23
+2025-12-16T16:55:28,405 INFO [main] org.apache.druid.offheap.OffheapBufferGenerator - Allocating new result merging buffer[0] of size[268,435,456]
+2025-12-16T16:55:28,489 INFO [main] org.apache.druid.offheap.OffheapBufferGenerator - Allocating new result merging buffer[1] of size[268,435,456]
+2025-12-16T16:55:28,579 INFO [main] org.apache.druid.offheap.OffheapBufferGenerator - Allocating new intermediate processing buffer[0] of size[268,435,456]
+2025-12-16T16:55:28,729 INFO [main] org.apache.druid.offheap.OffheapBufferGenerator - Allocating new intermediate processing buffer[1] of size[268,435,456]
+2025-12-16T16:55:29,798 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle - Starting lifecycle [module] stage [INIT]
+2025-12-16T16:55:29,799 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle$AnnotationBasedHandler - Starting lifecycle [Log4jShutterDowner#start]
+2025-12-16T16:55:29,799 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle - Starting lifecycle [module] stage [NORMAL]
+2025-12-16T16:55:29,799 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle$AnnotationBasedHandler - Starting lifecycle [ServiceEmitter#start]
+2025-12-16T16:55:29,800 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle$AnnotationBasedHandler - Starting lifecycle [BasicMonitorScheduler#start]
+2025-12-16T16:55:29,818 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle$AnnotationBasedHandler - Starting lifecycle [NettyHttpClient#start]
+2025-12-16T16:55:29,820 INFO [main] org.apache.curator.framework.imps.CuratorFrameworkImpl - Starting
+2025-12-16T16:55:29,830 INFO [main] org.apache.zookeeper.ZooKeeper - Client environment:zookeeper.version=3.8.4-9316c2a7a97e1666d8f4593f34dd6fc36ecc436c, built on 2024-02-12 22:16 UTC
+2025-12-16T16:55:29,830 INFO [main] org.apache.zookeeper.ZooKeeper - Client environment:host.name=df4b63605de4
+2025-12-16T16:55:29,831 INFO [main] org.apache.zookeeper.ZooKeeper - Client environment:java.version=17.0.15
+2025-12-16T16:55:29,831 INFO [main] org.apache.zookeeper.ZooKeeper - Client environment:java.vendor=Debian
+2025-12-16T16:55:29,831 INFO [main] org.apache.zookeeper.ZooKeeper - Client environment:java.home=/usr/lib/jvm/java-17-openjdk-amd64
+2025-12-16T16:55:29,831 INFO [main] org.apache.zookeeper.ZooKeeper - Client environment:java.class.path=/tmp/conf/druid/single-server/micro-quickstart/_common:/tmp/conf/druid/single-server/micro-quickstart/middleManager:lib/joni-2.1.34.jar:lib/jcodings-1.0.50.jar:lib/commons-dbcp2-2.0.1.jar:lib/airline-2.8.4.jar:lib/jackson-datatype-guava-2.18.4.jar:lib/cron-scheduler-0.1.jar:lib/jackson-dataformat-cbor-2.18.4.jar:lib/commons-beanutils-1.11.0.jar:lib/netty-codec-socks-4.1.122.Final.jar:lib/jmespath-java-1.12.784.jar:lib/calcite-core-1.37.0.jar:lib/netty-handler-4.1.122.Final.jar:lib/jboss-logging-3.4.1.Final.jar:lib/commons-codec-1.16.1.jar:lib/maven-model-builder-3.6.0.jar:lib/httpclient5-5.2.1.jar:lib/commons-collections-3.2.2.jar:lib/joda-time-2.14.0.jar:lib/xz-1.9.jar:lib/maven-resolver-spi-1.3.1.jar:lib/druid-processing-34.0.0.jar:lib/antlr4-runtime-4.5.3.jar:lib/jna-5.13.0.jar:lib/apiguardian-api-1.1.2.jar:lib/janino-3.1.11.jar:lib/maven-resolver-connector-basic-1.3.1.jar:lib/jts-core-1.19.0.jar:lib/log4j-api-2.22.1.jar:lib/jakarta.inject-api-1.0.3.jar:lib/jersey-servlet-1.19.4.jar:lib/jackson-core-2.18.4.1.jar:lib/rhino-1.7.14.jar:lib/istack-commons-runtime-3.0.11.jar:lib/maven-resolver-transport-http-1.3.1.jar:lib/google-api-client-2.2.0.jar:lib/log4j-1.2-api-2.22.1.jar:lib/jakarta.activation-1.2.2.jar:lib/jetty-util-9.4.57.v20241219.jar:lib/RoaringBitmap-0.9.49.jar:lib/maven-artifact-3.6.0.jar:lib/sigar-1.6.5.132.jar:lib/netty-buffer-4.1.122.Final.jar:lib/netty-codec-http-4.1.122.Final.jar:lib/maven-model-3.6.0.jar:lib/aws-java-sdk-kms-1.12.784.jar:lib/commons-text-1.13.1.jar:lib/jakarta.activation-api-1.2.2.jar:lib/javax.el-api-3.0.0.jar:lib/jackson-dataformat-smile-2.18.4.jar:lib/json-simple-1.1.1.jar:lib/resilience4j-bulkhead-1.3.1.jar:lib/jetty-security-9.4.57.v20241219.jar:lib/google-http-client-1.42.3.jar:lib/httpcore5-5.2.3.jar:lib/cron-utils-9.2.0.jar:lib/netty-transport-4.1.122.Final.jar:lib/ipaddress-5.3.4.jar:lib/jdbi-2.63.1.jar:lib/google-oauth-client-1.34.1.jar:lib/maven-resolver-impl-1.3.1.jar:lib/grpc-context-1.27.2.jar:lib/jetty-client-9.4.57.v20241219.jar:lib/commons-math3-3.6.1.jar:lib/commons-collections4-4.2.jar:lib/aws-java-sdk-core-1.12.784.jar:lib/zstd-jni-1.5.2-3.jar:lib/jna-platform-5.13.0.jar:lib/commons-io-2.17.0.jar:lib/gson-2.10.1.jar:lib/guice-5.1.0.jar:lib/netty-resolver-dns-4.1.122.Final.jar:lib/jcl-over-slf4j-2.0.16.jar:lib/zookeeper-jute-3.8.4.jar:lib/asm-commons-9.8.jar:lib/zookeeper-3.8.4.jar:lib/druid-server-34.0.0.jar:lib/plexus-utils-3.1.0.jar:lib/jackson-jq-0.0.10.jar:lib/google-http-client-jackson2-1.42.3.jar:lib/checker-qual-3.48.1.jar:lib/asm-9.8.jar:lib/jackson-jaxrs-smile-provider-2.18.4.jar:lib/jackson-annotations-2.18.4.jar:lib/netty-resolver-4.1.122.Final.jar:lib/jakarta.validation-api-2.0.2.jar:lib/failureaccess-1.0.1.jar:lib/jackson-module-guice-2.18.4.jar:lib/aopalliance-1.0.jar:lib/javax.inject-1.jar:lib/opencsv-4.6.jar:lib/jackson-databind-2.18.4.jar:lib/asm-tree-9.8.jar:lib/google-http-client-gson-1.42.3.jar:lib/fastutil-core-8.5.4.jar:lib/fastutil-8.5.4.jar:lib/opencensus-contrib-http-util-0.31.1.jar:lib/audience-annotations-0.12.0.jar:lib/disruptor-3.3.6.jar:lib/jetty-proxy-9.4.57.v20241219.jar:lib/httpclient-4.5.13.jar:lib/icu4j-73.2.jar:lib/js-22.3.5.jar:lib/jetty-http-9.4.57.v20241219.jar:lib/curator-x-discovery-5.8.0.jar:lib/datasketches-memory-2.2.0.jar:lib/commons-compiler-3.1.11.jar:lib/classmate-1.5.1.jar:lib/jersey-core-1.19.4.jar:lib/opencensus-api-0.31.1.jar:lib/log4j-slf4j2-impl-2.22.1.jar:lib/derbynet-10.14.2.0.jar:lib/jetty-server-9.4.57.v20241219.jar:lib/jaxb-runtime-2.3.3.jar:lib/lz4-java-1.8.0.jar:lib/curator-client-5.8.0.jar:lib/datasketches-java-4.2.0.jar:lib/commons-logging-1.3.5.jar:lib/avatica-core-1.25.0.jar:lib/web-console-34.0.0.jar:lib/jetty-servlets-9.4.57.v20241219.jar:lib/aws-java-sdk-ec2-1.12.784.jar:lib/jakarta.el-3.0.4.jar:lib/druid-indexing-service-34.0.0.jar:lib/log4j-jul-2.22.1.jar:lib/snappy-java-1.1.10.7.jar:lib/fastutil-extra-8.5.4.jar:lib/commons-pool2-2.2.jar:lib/netty-handler-proxy-4.1.122.Final.jar:lib/httpcore5-h2-5.2.jar:lib/httpcore-4.4.16.jar:lib/jackson-jaxrs-base-2.18.4.jar:lib/metrics-core-4.2.22.jar:lib/plexus-component-annotations-1.7.1.jar:lib/plexus-interpolation-1.25.jar:lib/derbyclient-10.14.2.0.jar:lib/uzaygezen-core-0.2.jar:lib/netty-transport-native-unix-common-4.1.122.Final.jar:lib/hibernate-validator-6.2.5.Final.jar:lib/jetty-servlet-9.4.57.v20241219.jar:lib/accessors-smart-2.5.2.jar:lib/regex-22.3.5.jar:lib/aws-java-sdk-s3-1.12.784.jar:lib/druid-gcp-common-34.0.0.jar:lib/derby-10.14.2.0.jar:lib/javax.servlet-api-3.1.0.jar:lib/maven-resolver-util-1.3.1.jar:lib/druid-indexing-hadoop-34.0.0.jar:lib/airline-io-2.8.4.jar:lib/vavr-match-0.10.2.jar:lib/maven-resolver-provider-3.6.0.jar:lib/js-scriptengine-22.3.5.jar:lib/calcite-linq4j-1.37.0.jar:lib/slf4j-api-2.0.16.jar:lib/jetty-io-9.4.57.v20241219.jar:lib/curator-recipes-5.8.0.jar:lib/jts-io-common-1.19.0.jar:lib/jsr311-api-1.1.1.jar:lib/compress-lzf-1.0.4.jar:lib/json-path-2.9.0.jar:lib/elasticache-java-cluster-client-1.2.0.jar:lib/jackson-module-jaxb-annotations-2.18.4.jar:lib/guice-servlet-5.1.0.jar:lib/commons-lang3-3.17.0.jar:lib/jackson-datatype-joda-2.18.4.jar:lib/guava-32.1.3-jre.jar:lib/maven-repository-metadata-3.6.0.jar:lib/json-smart-2.5.2.jar:lib/graal-sdk-22.3.5.jar:lib/jetty-util-ajax-9.4.57.v20241219.jar:lib/caffeine-2.8.0.jar:lib/jakarta.xml.bind-api-2.3.3.jar:lib/aws-java-sdk-sts-1.12.784.jar:lib/netty-common-4.1.122.Final.jar:lib/avatica-metrics-1.25.0.jar:lib/maven-builder-support-3.6.0.jar:lib/google-http-client-apache-v2-1.42.3.jar:lib/guice-assistedinject-5.1.0.jar:lib/jersey-guice-1.19.4.jar:lib/jackson-jaxrs-json-provider-2.18.4.jar:lib/druid-aws-common-34.0.0.jar:lib/error_prone_annotations-2.35.1.jar:lib/jetty-rewrite-9.4.57.v20241219.jar:lib/maven-resolver-api-1.3.1.jar:lib/druid-services-34.0.0.jar:lib/jetty-continuation-9.4.57.v20241219.jar:lib/oshi-core-6.4.4.jar:lib/log4j-core-2.22.1.jar:lib/txw2-2.3.3.jar:lib/protobuf-java-3.25.5.jar:lib/j2objc-annotations-2.8.jar:lib/vavr-0.10.2.jar:lib/commons-compress-1.26.0.jar:lib/annotations-26.0.2.jar:lib/jersey-server-1.19.4.jar:lib/truffle-api-22.3.5.jar:lib/netty-codec-dns-4.1.122.Final.jar:lib/proj4j-1.2.2.jar:lib/resilience4j-core-1.3.1.jar:lib/jsr305-3.0.2.jar:lib/druid-sql-34.0.0.jar:lib/shims-0.9.49.jar:lib/async-http-client-3.0.2.jar:lib/curator-framework-5.8.0.jar:lib/avatica-server-1.25.0.jar:lib/netty-3.10.6.Final.jar:lib/netty-codec-4.1.122.Final.jar:
+2025-12-16T16:55:29,832 INFO [main] org.apache.zookeeper.ZooKeeper - Client environment:java.library.path=/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib
+2025-12-16T16:55:29,832 INFO [main] org.apache.zookeeper.ZooKeeper - Client environment:java.io.tmpdir=var/tmp
+2025-12-16T16:55:29,832 INFO [main] org.apache.zookeeper.ZooKeeper - Client environment:java.compiler=<NA>
+2025-12-16T16:55:29,832 INFO [main] org.apache.zookeeper.ZooKeeper - Client environment:os.name=Linux
+2025-12-16T16:55:29,832 INFO [main] org.apache.zookeeper.ZooKeeper - Client environment:os.arch=amd64
+2025-12-16T16:55:29,832 INFO [main] org.apache.zookeeper.ZooKeeper - Client environment:os.version=6.14.0-37-generic
+2025-12-16T16:55:29,832 INFO [main] org.apache.zookeeper.ZooKeeper - Client environment:user.name=root
+2025-12-16T16:55:29,832 INFO [main] org.apache.zookeeper.ZooKeeper - Client environment:user.home=/root
+2025-12-16T16:55:29,833 INFO [main] org.apache.zookeeper.ZooKeeper - Client environment:user.dir=/opt/druid
+2025-12-16T16:55:29,833 INFO [main] org.apache.zookeeper.ZooKeeper - Client environment:os.memory.free=898MB
+2025-12-16T16:55:29,833 INFO [main] org.apache.zookeeper.ZooKeeper - Client environment:os.memory.max=1024MB
+2025-12-16T16:55:29,833 INFO [main] org.apache.zookeeper.ZooKeeper - Client environment:os.memory.total=1024MB
+2025-12-16T16:55:29,841 INFO [main] org.apache.zookeeper.ZooKeeper - Initiating client connection, connectString=zookeeper sessionTimeout=30000 watcher=org.apache.curator.ConnectionState@7c0b0bd9
+2025-12-16T16:55:29,847 INFO [main] org.apache.zookeeper.common.X509Util - Setting -D jdk.tls.rejectClientInitiatedRenegotiation=true to disable client-initiated TLS renegotiation
+2025-12-16T16:55:29,852 INFO [main] org.apache.zookeeper.ClientCnxnSocket - jute.maxbuffer value is 1048575 Bytes
+2025-12-16T16:55:29,877 INFO [main] org.apache.zookeeper.ClientCnxn - zookeeper.request.timeout value is 0. feature enabled=false
+2025-12-16T16:55:29,887 INFO [main] org.apache.curator.framework.imps.CuratorFrameworkImpl - Default schema
+2025-12-16T16:55:29,887 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle$AnnotationBasedHandler - Starting lifecycle [CuratorDruidNodeDiscoveryProvider#start]
+2025-12-16T16:55:29,889 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle$AnnotationBasedHandler - Starting lifecycle [DiscoveryServiceLocator#start]
+2025-12-16T16:55:29,897 INFO [main-SendThread(zookeeper:2181)] org.apache.zookeeper.ClientCnxn - Opening socket connection to server zookeeper/172.20.0.2:2181.
+2025-12-16T16:55:29,899 INFO [main-SendThread(zookeeper:2181)] org.apache.zookeeper.ClientCnxn - SASL config status: Will not attempt to authenticate using SASL (unknown error)
+2025-12-16T16:55:29,901 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle$AnnotationBasedHandler - Starting lifecycle [DiscoveryServiceLocator#start]
+2025-12-16T16:55:29,907 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle$AnnotationBasedHandler - Starting lifecycle [LookupReferencesManager#start]
+2025-12-16T16:55:29,909 INFO [main] org.apache.druid.query.lookup.LookupReferencesManager - Loading lookups using spec[LookupLoadingSpec{mode=ALL, lookupsToLoad=null}].
+2025-12-16T16:55:29,914 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle$AnnotationBasedHandler - Starting lifecycle [LocalIntermediaryDataManager#start]
+2025-12-16T16:55:29,925 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle$AnnotationBasedHandler - Starting lifecycle [NettyHttpClient#start]
+2025-12-16T16:55:29,925 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle$AnnotationBasedHandler - Starting lifecycle [ExecutorLifecycle#start]
+2025-12-16T16:55:29,933 INFO [main-SendThread(zookeeper:2181)] org.apache.zookeeper.ClientCnxn - Socket connection established, initiating session, client: /172.20.0.5:52368, server: zookeeper/172.20.0.2:2181
+2025-12-16T16:55:29,962 INFO [main-SendThread(zookeeper:2181)] org.apache.zookeeper.ClientCnxn - Session establishment complete on server zookeeper/172.20.0.2:2181, session id = 0x100001d4d3e000e, negotiated timeout = 30000
+2025-12-16T16:55:29,968 INFO [main-EventThread] org.apache.curator.framework.state.ConnectionStateManager - State change: CONNECTED
+2025-12-16T16:55:29,983 INFO [main-EventThread] org.apache.curator.framework.imps.EnsembleTracker - New config event received: {}
+2025-12-16T16:55:29,983 INFO [main-EventThread] org.apache.curator.framework.imps.EnsembleTracker - New config event received: {}
+2025-12-16T16:55:29,994 WARN [NodeRoleWatcher[COORDINATOR]] org.apache.druid.curator.discovery.CuratorDruidNodeDiscoveryProvider$NodeRoleWatcher - Ignored event type [CONNECTION_RECONNECTED] for node watcher of role [coordinator].
+2025-12-16T16:55:29,994 WARN [NodeRoleWatcher[OVERLORD]] org.apache.druid.curator.discovery.CuratorDruidNodeDiscoveryProvider$NodeRoleWatcher - Ignored event type [CONNECTION_RECONNECTED] for node watcher of role [overlord].
+2025-12-16T16:55:30,014 INFO [NodeRoleWatcher[OVERLORD]] org.apache.druid.discovery.BaseNodeRoleWatcher - Node [http://172.20.0.4:8081] of role [overlord] detected.
+2025-12-16T16:55:30,014 INFO [NodeRoleWatcher[COORDINATOR]] org.apache.druid.discovery.BaseNodeRoleWatcher - Node [http://172.20.0.4:8081] of role [coordinator] detected.
+2025-12-16T16:55:30,014 INFO [NodeRoleWatcher[OVERLORD]] org.apache.druid.discovery.BaseNodeRoleWatcher - Node watcher of role [overlord] is now initialized with 1 nodes.
+2025-12-16T16:55:30,014 INFO [NodeRoleWatcher[COORDINATOR]] org.apache.druid.discovery.BaseNodeRoleWatcher - Node watcher of role [coordinator] is now initialized with 1 nodes.
+2025-12-16T16:55:30,039 INFO [main] org.apache.druid.indexing.worker.executor.ExecutorLifecycle - Running with task: {
+  "type" : "index_kafka",
+  "id" : "index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl",
+  "supervisorId" : "clima-sudeste-raw",
+  "resource" : {
+    "availabilityGroup" : "index_kafka_clima-sudeste-raw_37ee4133727d97b",
+    "requiredCapacity" : 1
+  },
+  "dataSchema" : {
+    "dataSource" : "clima-sudeste-raw",
+    "timestampSpec" : {
+      "column" : "timestamp",
+      "format" : "yyyyMMddHH",
+      "missingValue" : null
+    },
+    "dimensionsSpec" : {
+      "dimensions" : [ {
+        "type" : "string",
+        "name" : "location.lat",
+        "multiValueHandling" : "SORTED_ARRAY",
+        "createBitmapIndex" : true
+      }, {
+        "type" : "string",
+        "name" : "location.lon",
+        "multiValueHandling" : "SORTED_ARRAY",
+        "createBitmapIndex" : true
+      }, {
+        "type" : "string",
+        "name" : "city",
+        "multiValueHandling" : "SORTED_ARRAY",
+        "createBitmapIndex" : true
+      }, {
+        "type" : "json",
+        "name" : "location",
+        "formatVersion" : 5,
+        "multiValueHandling" : "SORTED_ARRAY",
+        "createBitmapIndex" : true
+      }, {
+        "type" : "double",
+        "name" : "temperature_c",
+        "multiValueHandling" : "SORTED_ARRAY",
+        "createBitmapIndex" : false
+      }, {
+        "type" : "double",
+        "name" : "humidity_percent",
+        "multiValueHandling" : "SORTED_ARRAY",
+        "createBitmapIndex" : false
+      }, {
+        "type" : "long",
+        "name" : "solar_irradiance",
+        "multiValueHandling" : "SORTED_ARRAY",
+        "createBitmapIndex" : false
+      }, {
+        "type" : "double",
+        "name" : "wind_speed_ms",
+        "multiValueHandling" : "SORTED_ARRAY",
+        "createBitmapIndex" : false
+      }, {
+        "type" : "string",
+        "name" : "sensor_id",
+        "multiValueHandling" : "SORTED_ARRAY",
+        "createBitmapIndex" : true
+      } ],
+      "dimensionExclusions" : [ "__time", "timestamp" ],
+      "includeAllDimensions" : false,
+      "useSchemaDiscovery" : false
+    },
+    "metricsSpec" : [ ],
+    "granularitySpec" : {
+      "type" : "uniform",
+      "segmentGranularity" : "DAY",
+      "queryGranularity" : {
+        "type" : "none"
+      },
+      "rollup" : false,
+      "intervals" : [ ]
+    },
+    "transformSpec" : {
+      "filter" : null,
+      "transforms" : [ ]
+    }
+  },
+  "tuningConfig" : {
+    "type" : "KafkaTuningConfig",
+    "appendableIndexSpec" : {
+      "type" : "onheap",
+      "preserveExistingMetrics" : false
+    },
+    "maxRowsInMemory" : 150000,
+    "maxBytesInMemory" : 0,
+    "skipBytesInMemoryOverheadCheck" : false,
+    "maxRowsPerSegment" : 5000000,
+    "maxTotalRows" : null,
+    "intermediatePersistPeriod" : "PT10M",
+    "maxPendingPersists" : 0,
+    "indexSpec" : {
+      "bitmap" : {
+        "type" : "roaring"
+      },
+      "dimensionCompression" : "lz4",
+      "stringDictionaryEncoding" : {
+        "type" : "utf8"
+      },
+      "metricCompression" : "lz4",
+      "longEncoding" : "longs"
+    },
+    "indexSpecForIntermediatePersists" : {
+      "bitmap" : {
+        "type" : "roaring"
+      },
+      "dimensionCompression" : "lz4",
+      "stringDictionaryEncoding" : {
+        "type" : "utf8"
+      },
+      "metricCompression" : "lz4",
+      "longEncoding" : "longs"
+    },
+    "reportParseExceptions" : false,
+    "handoffConditionTimeout" : 900000,
+    "resetOffsetAutomatically" : false,
+    "segmentWriteOutMediumFactory" : null,
+    "intermediateHandoffPeriod" : "P2147483647D",
+    "logParseExceptions" : false,
+    "maxParseExceptions" : 2147483647,
+    "maxSavedParseExceptions" : 0,
+    "numPersistThreads" : 1,
+    "maxColumnsToMerge" : -1,
+    "skipSequenceNumberAvailabilityCheck" : false
+  },
+  "ioConfig" : {
+    "type" : "kafka",
+    "taskGroupId" : 0,
+    "baseSequenceName" : "index_kafka_clima-sudeste-raw_37ee4133727d97b",
+    "startPartitions" : {
+      "type" : "end",
+      "stream" : "clima-sudeste-raw",
+      "topic" : "clima-sudeste-raw",
+      "partitionSequenceNumberMap" : {
+        "0" : 0
+      },
+      "partitionOffsetMap" : {
+        "0" : 0
+      }
+    },
+    "endPartitions" : {
+      "type" : "end",
+      "stream" : "clima-sudeste-raw",
+      "topic" : "clima-sudeste-raw",
+      "partitionSequenceNumberMap" : {
+        "0" : 9223372036854775807
+      },
+      "partitionOffsetMap" : {
+        "0" : 9223372036854775807
+      }
+    },
+    "startSequenceNumbers" : {
+      "type" : "start",
+      "stream" : "clima-sudeste-raw",
+      "topic" : "clima-sudeste-raw",
+      "partitionSequenceNumberMap" : {
+        "0" : 0
+      },
+      "partitionOffsetMap" : {
+        "0" : 0
+      },
+      "exclusivePartitions" : [ ]
+    },
+    "endSequenceNumbers" : {
+      "type" : "end",
+      "stream" : "clima-sudeste-raw",
+      "topic" : "clima-sudeste-raw",
+      "partitionSequenceNumberMap" : {
+        "0" : 9223372036854775807
+      },
+      "partitionOffsetMap" : {
+        "0" : 9223372036854775807
+      }
+    },
+    "consumerProperties" : {
+      "bootstrap.servers" : "kafka:29092"
+    },
+    "pollTimeout" : 100,
+    "useTransaction" : true,
+    "inputFormat" : {
+      "type" : "json",
+      "flattenSpec" : {
+        "useFieldDiscovery" : true,
+        "fields" : [ {
+          "type" : "path",
+          "name" : "location.lat",
+          "expr" : "$.location.lat",
+          "nodes" : null
+        }, {
+          "type" : "path",
+          "name" : "location.lon",
+          "expr" : "$.location.lon",
+          "nodes" : null
+        } ]
+      }
+    },
+    "configOverrides" : null,
+    "multiTopic" : false,
+    "refreshRejectionPeriodsInMinutes" : 60
+  },
+  "context" : {
+    "checkpoints" : "{\"0\":{\"0\":0}}",
+    "useLineageBasedSegmentAllocation" : true,
+    "forceTimeChunkLock" : true
+  },
+  "groupId" : "index_kafka_clima-sudeste-raw",
+  "dataSource" : "clima-sudeste-raw"
+}
+2025-12-16T16:55:30,039 INFO [main] org.apache.druid.indexing.worker.executor.ExecutorLifecycle - Attempting to lock file[/opt/druid/var/druid/task/slot1/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/lock].
+2025-12-16T16:55:30,040 INFO [main] org.apache.druid.indexing.worker.executor.ExecutorLifecycle - Acquired lock file[/opt/druid/var/druid/task/slot1/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/lock] in 1ms.
+2025-12-16T16:55:30,043 INFO [main] org.apache.druid.segment.loading.SegmentLocalCacheManager - Using storage location strategy[LeastBytesUsedStorageLocationSelectorStrategy].
+2025-12-16T16:55:30,043 INFO [main] org.apache.druid.segment.loading.SegmentLocalCacheManager - Number of threads to load segments into page cache - on bootstrap: [0], on download: [0].
+2025-12-16T16:55:30,049 INFO [task-runner-0-priority-0] org.apache.druid.indexing.overlord.SingleTaskBackgroundRunner - Running task: index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl
+2025-12-16T16:55:30,051 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle$AnnotationBasedHandler - Starting lifecycle [ZkCoordinator#start]
+2025-12-16T16:55:30,051 INFO [main] org.apache.druid.server.coordination.ZkCoordinator - Starting zkCoordinator for server[172.20.0.5:8100]
+2025-12-16T16:55:30,051 INFO [main] org.apache.druid.server.coordination.ZkCoordinator - Creating zkPath[/druid/segments/172.20.0.5:8100] for announcing live segments.
+2025-12-16T16:55:30,053 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle$AnnotationBasedHandler - Starting lifecycle [SegmentBootstrapper#start]
+2025-12-16T16:55:30,053 INFO [main] org.apache.druid.server.coordination.SegmentBootstrapper - Starting...
+2025-12-16T16:55:30,055 INFO [main] org.apache.druid.server.coordination.SegmentBootstrapper - Fetching bootstrap segments from the coordinator with BroadcastDatasourceLoadingSpec mode[ALL].
+2025-12-16T16:55:30,097 INFO [task-runner-0-priority-0] org.apache.druid.indexing.seekablestream.SeekableStreamIndexTaskRunner - Starting with sequences: [SequenceMetadata{sequenceId=0, sequenceName='index_kafka_clima-sudeste-raw_37ee4133727d97b_0', assignments=[KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}], startOffsets={KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}=0}, exclusiveStartPartitions=[], endOffsets={KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}=9223372036854775807}, sentinel=false, checkpointed=false}]
+2025-12-16T16:55:30,122 INFO [main] org.apache.druid.server.coordination.SegmentBootstrapper - Fetched [0] bootstrap segments in [66]ms.
+2025-12-16T16:55:30,123 INFO [main] org.apache.druid.server.coordination.SegmentBootstrapper$BackgroundSegmentAnnouncer - Skipping background segment announcing as announceIntervalMillis is [0].
+2025-12-16T16:55:30,127 INFO [main] org.apache.druid.server.coordination.SegmentBootstrapper$BackgroundSegmentAnnouncer - Completed background segment announcing
+2025-12-16T16:55:30,128 INFO [main] org.apache.druid.server.coordination.SegmentBootstrapper - Loaded [0] segments on startup in [5]ms.
+2025-12-16T16:55:30,138 INFO [task-runner-0-priority-0] org.apache.kafka.clients.consumer.ConsumerConfig - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = none
+	bootstrap.servers = [kafka:29092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-kafka-supervisor-jkmocbne-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = kafka-supervisor-jkmocbne
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_committed
+	key.deserializer = class org.apache.kafka.common.serialization.ByteArrayDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 10000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.header.urlencode = false
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.ByteArrayDeserializer
+
+2025-12-16T16:55:30,138 INFO [main] org.apache.druid.server.coordination.CuratorDataSegmentServerAnnouncer - Announcing self[DruidServerMetadata{name='172.20.0.5:8100', hostAndPort='172.20.0.5:8100', hostAndTlsPort='null', maxSize=0, tier='_default_tier', type=indexer-executor, priority=0}] at [/druid/announcements/172.20.0.5:8100]
+2025-12-16T16:55:30,140 INFO [main] org.apache.druid.server.coordination.SegmentBootstrapper - Started.
+2025-12-16T16:55:30,142 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle - Starting lifecycle [module] stage [SERVER]
+2025-12-16T16:55:30,143 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle$AnnotationBasedHandler - Starting lifecycle [SingleTaskBackgroundRunner#start]
+2025-12-16T16:55:30,146 INFO [main] org.eclipse.jetty.server.Server - jetty-9.4.57.v20241219; built: 2025-01-08T21:24:30.412Z; git: df524e6b29271c2e09ba9aea83c18dc9db464a31; jvm 17.0.15+6-Debian-1deb12u1
+2025-12-16T16:55:30,174 INFO [main] org.eclipse.jetty.server.session - DefaultSessionIdManager workerName=node0
+2025-12-16T16:55:30,174 INFO [main] org.eclipse.jetty.server.session - No SessionScavenger set, using defaults
+2025-12-16T16:55:30,175 INFO [main] org.eclipse.jetty.server.session - node0 Scavenging every 600000ms
+2025-12-16T16:55:30,207 INFO [task-runner-0-priority-0] org.apache.kafka.common.telemetry.internals.KafkaMetricsCollector - initializing Kafka metrics collector
+2025-12-16T16:55:30,235 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Registering com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider as a provider class
+2025-12-16T16:55:30,235 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Registering com.fasterxml.jackson.jaxrs.smile.JacksonSmileProvider as a provider class
+2025-12-16T16:55:30,235 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Registering org.apache.druid.server.initialization.jetty.CustomExceptionMapper as a provider class
+2025-12-16T16:55:30,236 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Registering org.apache.druid.server.initialization.jetty.ForbiddenExceptionMapper as a provider class
+2025-12-16T16:55:30,236 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Registering org.apache.druid.server.initialization.jetty.BadRequestExceptionMapper as a provider class
+2025-12-16T16:55:30,236 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Registering org.apache.druid.server.initialization.jetty.ServiceUnavailableExceptionMapper as a provider class
+2025-12-16T16:55:30,236 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Registering org.apache.druid.server.initialization.jetty.HttpExceptionMapper as a provider class
+2025-12-16T16:55:30,236 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Registering org.apache.druid.server.StatusResource as a root resource class
+2025-12-16T16:55:30,237 INFO [main] com.sun.jersey.server.impl.application.WebApplicationImpl - Initiating Jersey application, version 'Jersey: 1.19.4 05/24/2017 03:20 PM'
+2025-12-16T16:55:30,281 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Binding org.apache.druid.server.initialization.jetty.CustomExceptionMapper to GuiceManagedComponentProvider with the scope "Singleton"
+2025-12-16T16:55:30,282 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Binding org.apache.druid.server.initialization.jetty.ForbiddenExceptionMapper to GuiceManagedComponentProvider with the scope "Singleton"
+2025-12-16T16:55:30,282 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Binding org.apache.druid.server.initialization.jetty.BadRequestExceptionMapper to GuiceManagedComponentProvider with the scope "Singleton"
+2025-12-16T16:55:30,283 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Binding org.apache.druid.server.initialization.jetty.ServiceUnavailableExceptionMapper to GuiceManagedComponentProvider with the scope "Singleton"
+2025-12-16T16:55:30,283 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Binding org.apache.druid.server.initialization.jetty.HttpExceptionMapper to GuiceManagedComponentProvider with the scope "Singleton"
+2025-12-16T16:55:30,283 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Binding com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider to GuiceManagedComponentProvider with the scope "Singleton"
+2025-12-16T16:55:30,288 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Binding com.fasterxml.jackson.jaxrs.smile.JacksonSmileProvider to GuiceManagedComponentProvider with the scope "Singleton"
+2025-12-16T16:55:30,298 INFO [task-runner-0-priority-0] org.apache.kafka.common.utils.AppInfoParser - Kafka version: 3.9.1
+2025-12-16T16:55:30,298 INFO [task-runner-0-priority-0] org.apache.kafka.common.utils.AppInfoParser - Kafka commitId: f745dfdcee2b9851
+2025-12-16T16:55:30,298 INFO [task-runner-0-priority-0] org.apache.kafka.common.utils.AppInfoParser - Kafka startTimeMs: 1765904130296
+2025-12-16T16:55:30,306 INFO [task-runner-0-priority-0] org.apache.druid.curator.discovery.CuratorDruidNodeAnnouncer - Announced self [{"druidNode":{"service":"druid/middleManager","host":"172.20.0.5","bindOnHost":false,"plaintextPort":8100,"port":-1,"tlsPort":-1,"enablePlaintextPort":true,"enableTlsPort":false},"nodeType":"peon","services":{"dataNodeService":{"type":"dataNodeService","tier":"_default_tier","maxSize":0,"type":"indexer-executor","serverType":"indexer-executor","priority":0},"lookupNodeService":{"type":"lookupNodeService","lookupTier":"__default"}},"startTime":"2025-12-16T16:55:30.100Z"}].
+2025-12-16T16:55:30,321 INFO [task-runner-0-priority-0] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Number of persist threads [1]
+2025-12-16T16:55:30,348 INFO [task-runner-0-priority-0] org.apache.druid.indexing.seekablestream.SeekableStreamIndexTaskRunner - Initialized sequences: SequenceMetadata{sequenceId=0, sequenceName='index_kafka_clima-sudeste-raw_37ee4133727d97b_0', assignments=[KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}], startOffsets={KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}=0}, exclusiveStartPartitions=[], endOffsets={KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}=9223372036854775807}, sentinel=false, checkpointed=false}
+2025-12-16T16:55:30,350 INFO [task-runner-0-priority-0] org.apache.druid.indexing.seekablestream.SeekableStreamIndexTaskRunner - Adding partition[KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}], start[0] -> end[9223372036854775807] to assignment.
+2025-12-16T16:55:30,352 INFO [task-runner-0-priority-0] org.apache.kafka.clients.consumer.internals.ClassicKafkaConsumer - [Consumer clientId=consumer-kafka-supervisor-jkmocbne-1, groupId=kafka-supervisor-jkmocbne] Assigned to partition(s): clima-sudeste-raw-0
+2025-12-16T16:55:30,354 INFO [task-runner-0-priority-0] org.apache.druid.indexing.seekablestream.SeekableStreamIndexTaskRunner - Seeking partition[KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}] to[0].
+2025-12-16T16:55:30,355 INFO [task-runner-0-priority-0] org.apache.kafka.clients.consumer.internals.ClassicKafkaConsumer - [Consumer clientId=consumer-kafka-supervisor-jkmocbne-1, groupId=kafka-supervisor-jkmocbne] Seeking to offset 0 for partition clima-sudeste-raw-0
+2025-12-16T16:55:30,501 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Binding org.apache.druid.server.http.security.StateResourceFilter to GuiceInstantiatedComponentProvider
+2025-12-16T16:55:30,534 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Binding org.apache.druid.server.http.SegmentListerResource to GuiceInstantiatedComponentProvider
+2025-12-16T16:55:30,540 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Binding org.apache.druid.server.http.HistoricalResource to GuiceInstantiatedComponentProvider
+2025-12-16T16:55:30,543 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Binding org.apache.druid.server.QueryResource to GuiceInstantiatedComponentProvider
+2025-12-16T16:55:30,544 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Binding org.apache.druid.segment.realtime.ChatHandlerResource to GuiceInstantiatedComponentProvider
+2025-12-16T16:55:30,546 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Binding org.apache.druid.server.http.security.ConfigResourceFilter to GuiceInstantiatedComponentProvider
+2025-12-16T16:55:30,549 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Binding org.apache.druid.query.lookup.LookupListeningResource to GuiceInstantiatedComponentProvider
+2025-12-16T16:55:30,554 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Binding org.apache.druid.query.lookup.LookupIntrospectionResource to GuiceInstantiatedComponentProvider
+2025-12-16T16:55:30,555 INFO [main] com.sun.jersey.guice.spi.container.GuiceComponentProviderFactory - Binding org.apache.druid.server.StatusResource to GuiceManagedComponentProvider with the scope "Singleton"
+2025-12-16T16:55:30,577 INFO [main] org.eclipse.jetty.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@6e612122{/,null,AVAILABLE}
+2025-12-16T16:55:30,587 INFO [main] org.eclipse.jetty.server.AbstractConnector - Started ServerConnector@5cc87de4{HTTP/1.1, (http/1.1)}{0.0.0.0:8100}
+2025-12-16T16:55:30,587 INFO [main] org.eclipse.jetty.server.Server - Started @5497ms
+2025-12-16T16:55:30,587 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle - Starting lifecycle [module] stage [ANNOUNCEMENTS]
+2025-12-16T16:55:30,587 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle$AnnotationBasedHandler - Starting lifecycle [PathChildrenAnnouncer#start]
+2025-12-16T16:55:30,611 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle - Successfully started lifecycle [module]
+2025-12-16T16:55:30,753 DEBUG [qtp2082499348-117] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments/loadCapabilities HTTP/1.1 200
+2025-12-16T16:55:30,755 DEBUG [qtp2082499348-114] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=-1&timeout=240000 HTTP/1.1 204
+2025-12-16T16:55:30,758 DEBUG [qtp2082499348-118] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=-1&timeout=240000 HTTP/1.1 204
+2025-12-16T16:55:30,841 INFO [task-runner-0-priority-0] org.apache.kafka.clients.Metadata - [Consumer clientId=consumer-kafka-supervisor-jkmocbne-1, groupId=kafka-supervisor-jkmocbne] Cluster ID: SWmm16K3TWGKsSMiTvyAiA
+2025-12-16T16:55:31,034 INFO [task-runner-0-priority-0] org.apache.druid.server.coordination.BatchDataSegmentAnnouncer - Announcing segment[clima-sudeste-raw_2025-12-08T00:00:00.000Z_2025-12-09T00:00:00.000Z_2025-12-16T16:55:30.926Z] at new path[/druid/segments/172.20.0.5:8100/172.20.0.5:8100_indexer-executor__default_tier_2025-12-16T16:55:31.033Z_eb1280beb1ba4dda93242633cda317df1]
+2025-12-16T16:55:31,036 DEBUG [SegmentChangeRequestHistory] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=0&hash=1765904130734&timeout=240000 HTTP/1.1 200
+2025-12-16T16:55:31,038 DEBUG [SegmentChangeRequestHistory] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=0&hash=1765904130734&timeout=240000 HTTP/1.1 200
+2025-12-16T16:55:31,130 DEBUG [SegmentChangeRequestHistory] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=1&hash=1765904131029&timeout=240000 HTTP/1.1 200
+2025-12-16T16:55:31,132 DEBUG [SegmentChangeRequestHistory] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=1&hash=1765904131029&timeout=240000 HTTP/1.1 200
+2025-12-16T16:55:31,139 INFO [task-runner-0-priority-0] org.apache.druid.server.coordination.BatchDataSegmentAnnouncer - Announcing segment[clima-sudeste-raw_2025-12-09T00:00:00.000Z_2025-12-10T00:00:00.000Z_2025-12-16T16:55:31.103Z] at existing path[/druid/segments/172.20.0.5:8100/172.20.0.5:8100_indexer-executor__default_tier_2025-12-16T16:55:31.033Z_eb1280beb1ba4dda93242633cda317df1]
+2025-12-16T16:55:31,173 DEBUG [qtp2082499348-122] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T16:55:31,189 DEBUG [qtp2082499348-132] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T16:55:31,204 INFO [task-runner-0-priority-0] org.apache.druid.server.coordination.BatchDataSegmentAnnouncer - Announcing segment[clima-sudeste-raw_2025-12-10T00:00:00.000Z_2025-12-11T00:00:00.000Z_2025-12-16T16:55:31.181Z] at existing path[/druid/segments/172.20.0.5:8100/172.20.0.5:8100_indexer-executor__default_tier_2025-12-16T16:55:31.033Z_eb1280beb1ba4dda93242633cda317df1]
+2025-12-16T16:55:31,205 DEBUG [SegmentChangeRequestHistory] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=2&hash=1765904131129&timeout=240000 HTTP/1.1 200
+2025-12-16T16:55:31,207 DEBUG [SegmentChangeRequestHistory] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=2&hash=1765904131129&timeout=240000 HTTP/1.1 200
+2025-12-16T16:55:31,249 DEBUG [SegmentChangeRequestHistory] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=3&hash=1765904131202&timeout=240000 HTTP/1.1 200
+2025-12-16T16:55:31,249 INFO [task-runner-0-priority-0] org.apache.druid.server.coordination.BatchDataSegmentAnnouncer - Announcing segment[clima-sudeste-raw_2025-12-11T00:00:00.000Z_2025-12-12T00:00:00.000Z_2025-12-16T16:55:31.224Z] at existing path[/druid/segments/172.20.0.5:8100/172.20.0.5:8100_indexer-executor__default_tier_2025-12-16T16:55:31.033Z_eb1280beb1ba4dda93242633cda317df1]
+2025-12-16T16:55:31,251 DEBUG [SegmentChangeRequestHistory] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=3&hash=1765904131202&timeout=240000 HTTP/1.1 200
+2025-12-16T16:55:31,289 INFO [task-runner-0-priority-0] org.apache.druid.server.coordination.BatchDataSegmentAnnouncer - Announcing segment[clima-sudeste-raw_2025-12-12T00:00:00.000Z_2025-12-13T00:00:00.000Z_2025-12-16T16:55:31.271Z] at existing path[/druid/segments/172.20.0.5:8100/172.20.0.5:8100_indexer-executor__default_tier_2025-12-16T16:55:31.033Z_eb1280beb1ba4dda93242633cda317df1]
+2025-12-16T16:55:31,292 DEBUG [SegmentChangeRequestHistory] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=4&hash=1765904131245&timeout=240000 HTTP/1.1 200
+2025-12-16T16:55:31,303 DEBUG [SegmentChangeRequestHistory] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=4&hash=1765904131245&timeout=240000 HTTP/1.1 200
+2025-12-16T16:55:31,962 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/status HTTP/1.1 200
+2025-12-16T16:55:31,989 DEBUG [qtp2082499348-133] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/checkpoints HTTP/1.1 200
+2025-12-16T16:55:31,996 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/time/start HTTP/1.1 200
+2025-12-16T16:55:36,021 DEBUG [qtp2082499348-133] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/rowStats HTTP/1.1 200
+2025-12-16T16:55:39,838 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T16:55:45,620 DEBUG [qtp2082499348-133] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/rowStats HTTP/1.1 200
+2025-12-16T16:56:08,220 DEBUG [SegmentChangeRequestHistory] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=5&hash=1765904131288&timeout=240000 HTTP/1.1 200
+2025-12-16T16:56:08,221 INFO [task-runner-0-priority-0] org.apache.druid.server.coordination.BatchDataSegmentAnnouncer - Announcing segment[clima-sudeste-raw_2025-12-13T00:00:00.000Z_2025-12-14T00:00:00.000Z_2025-12-16T16:56:08.200Z] at existing path[/druid/segments/172.20.0.5:8100/172.20.0.5:8100_indexer-executor__default_tier_2025-12-16T16:55:31.033Z_eb1280beb1ba4dda93242633cda317df1]
+2025-12-16T16:56:08,222 DEBUG [SegmentChangeRequestHistory] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=5&hash=1765904131288&timeout=240000 HTTP/1.1 200
+2025-12-16T16:56:09,852 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T16:56:37,182 DEBUG [qtp2082499348-133] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T16:56:39,856 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T16:57:09,492 DEBUG [qtp2082499348-133] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T16:57:09,868 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T16:57:22,771 DEBUG [qtp2082499348-133] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/rowStats HTTP/1.1 200
+2025-12-16T16:57:39,881 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T16:57:43,208 DEBUG [qtp2082499348-133] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T16:58:09,898 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T16:58:39,921 DEBUG [qtp2082499348-133] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T16:58:49,187 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T16:59:09,931 DEBUG [qtp2082499348-133] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T16:59:39,942 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T16:59:55,240 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:00:08,232 DEBUG [qtp2082499348-122] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:00:08,234 DEBUG [qtp2082499348-116] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:00:09,956 DEBUG [qtp2082499348-130] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:00:27,970 DEBUG [qtp2082499348-130] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:00:39,960 DEBUG [qtp2082499348-130] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:00:49,886 DEBUG [qtp2082499348-133] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:01:01,222 DEBUG [qtp2082499348-133] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:01:09,971 DEBUG [qtp2082499348-133] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:01:39,984 DEBUG [qtp2082499348-133] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:02:07,229 DEBUG [qtp2082499348-130] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:02:09,989 DEBUG [qtp2082499348-130] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:02:39,994 DEBUG [qtp2082499348-133] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:03:09,998 DEBUG [qtp2082499348-133] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:03:13,207 DEBUG [qtp2082499348-130] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:03:40,009 DEBUG [qtp2082499348-133] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:04:08,237 DEBUG [qtp2082499348-123] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:04:08,245 DEBUG [qtp2082499348-117] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:04:10,027 DEBUG [qtp2082499348-120] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:04:19,187 DEBUG [qtp2082499348-130] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:04:40,031 DEBUG [qtp2082499348-120] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:05:10,043 DEBUG [qtp2082499348-120] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:05:25,180 DEBUG [qtp2082499348-130] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:05:40,047 DEBUG [qtp2082499348-130] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:06:10,060 DEBUG [qtp2082499348-130] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:06:31,187 DEBUG [qtp2082499348-120] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:06:40,078 DEBUG [qtp2082499348-130] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:07:10,088 DEBUG [qtp2082499348-130] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:07:37,197 DEBUG [qtp2082499348-120] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:07:40,098 DEBUG [qtp2082499348-130] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:08:08,250 DEBUG [qtp2082499348-133] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:08:08,258 DEBUG [qtp2082499348-128] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:08:10,102 DEBUG [qtp2082499348-129] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:08:40,105 DEBUG [qtp2082499348-129] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:08:43,190 DEBUG [qtp2082499348-120] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:09:10,116 DEBUG [qtp2082499348-129] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:09:40,119 DEBUG [qtp2082499348-129] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:09:49,188 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:10:10,123 DEBUG [qtp2082499348-129] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:10:40,133 DEBUG [qtp2082499348-129] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:10:55,192 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:11:10,136 DEBUG [qtp2082499348-129] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:11:40,140 DEBUG [qtp2082499348-129] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:12:01,184 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:12:08,260 DEBUG [qtp2082499348-130] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:12:08,260 DEBUG [qtp2082499348-122] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:12:10,150 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:12:40,154 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:13:07,186 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:13:10,157 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:13:40,160 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:14:10,163 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:14:13,187 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:14:40,167 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:15:10,170 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:15:19,189 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:15:40,173 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:16:08,270 DEBUG [qtp2082499348-132] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:16:08,273 DEBUG [qtp2082499348-114] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:16:10,176 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:16:25,190 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:16:40,179 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:17:10,183 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:17:31,199 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:17:40,186 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:18:10,197 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:18:37,192 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:18:40,200 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:19:10,203 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:19:40,206 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:19:43,199 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:20:08,273 DEBUG [qtp2082499348-114] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:20:08,275 DEBUG [qtp2082499348-117] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:20:10,210 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:20:40,213 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:20:49,193 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:21:10,216 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:21:40,234 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:21:55,202 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:22:10,245 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:22:40,248 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:23:01,195 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:23:10,268 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:23:40,271 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:24:07,202 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:24:08,277 DEBUG [qtp2082499348-127] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:24:08,289 DEBUG [qtp2082499348-118] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:24:10,282 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:24:40,285 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:25:10,297 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:25:13,197 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:25:40,314 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:26:10,318 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:26:19,205 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:26:40,328 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:27:10,331 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:27:25,199 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:27:40,334 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:28:08,278 DEBUG [qtp2082499348-118] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:28:08,299 DEBUG [qtp2082499348-126] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:28:10,345 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:28:31,201 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:28:40,348 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:29:10,351 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:29:37,202 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:29:40,355 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:30:10,358 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:30:40,361 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:30:43,202 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:31:10,371 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:31:40,367 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:31:49,210 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:32:08,280 DEBUG [qtp2082499348-126] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:32:08,302 DEBUG [qtp2082499348-122] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:32:10,370 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:32:40,381 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:32:55,204 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:33:10,383 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:33:40,386 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:34:01,206 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:34:10,389 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:34:40,392 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:35:07,216 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:35:10,395 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:35:40,398 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:36:08,282 DEBUG [qtp2082499348-122] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:36:08,312 DEBUG [qtp2082499348-121] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:36:10,401 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:36:13,215 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:36:40,404 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:37:10,407 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:37:19,208 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:37:40,410 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:38:10,413 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:38:25,210 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:38:40,416 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:39:10,419 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:39:31,211 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:39:40,422 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:40:08,284 DEBUG [qtp2082499348-121] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:40:08,314 DEBUG [qtp2082499348-132] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:40:10,425 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:40:37,220 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:40:40,428 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:41:10,431 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:41:40,434 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:41:43,214 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:42:10,437 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:42:40,440 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:42:49,219 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:43:10,443 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:43:40,455 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:43:55,216 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:44:08,286 DEBUG [qtp2082499348-114] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:44:08,316 DEBUG [qtp2082499348-123] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:44:10,458 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:44:40,467 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:45:01,225 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:45:10,470 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:45:40,481 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:46:07,226 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:46:10,484 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:46:40,495 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:47:10,499 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:47:13,226 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:47:40,502 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:48:08,288 DEBUG [qtp2082499348-120] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:48:08,318 DEBUG [qtp2082499348-133] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:48:10,505 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:48:19,227 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:48:40,507 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:49:10,510 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:49:25,228 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:49:40,514 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:50:10,517 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:50:31,229 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:50:40,520 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:51:10,523 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:51:37,222 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:51:40,526 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:52:08,290 DEBUG [qtp2082499348-118] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:52:08,320 DEBUG [qtp2082499348-126] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:52:10,529 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:52:40,532 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:52:43,224 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:53:10,535 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:53:40,537 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:53:49,226 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:54:10,540 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:54:40,544 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:54:55,226 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:55:10,547 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:55:30,067 INFO [RejectionPeriodUpdater-Exec--0] org.apache.druid.indexing.seekablestream.SeekableStreamIndexTaskRunner - Updated min and max messsage times to [-146136543-09-08T09:23:32.096Z] and [146140482-04-24T16:36:27.903Z] respectively.
+2025-12-16T17:55:31,160 INFO [task-runner-0-priority-0] org.apache.druid.indexing.seekablestream.SeekableStreamIndexTaskRunner - Received pause command, pausing ingestion until resumed.
+2025-12-16T17:55:31,162 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 POST //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/pause HTTP/1.1 200
+2025-12-16T17:55:31,168 INFO [qtp2082499348-124] org.apache.druid.indexing.seekablestream.SeekableStreamIndexTaskRunner - Sequence[index_kafka_clima-sudeste-raw_37ee4133727d97b_0] end offsets updated from [{KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}=9223372036854775807}] to [{KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}=960}].
+2025-12-16T17:55:31,171 INFO [qtp2082499348-124] org.apache.druid.indexing.seekablestream.SeekableStreamIndexTaskRunner - Saved sequence metadata to disk: [SequenceMetadata{sequenceId=0, sequenceName='index_kafka_clima-sudeste-raw_37ee4133727d97b_0', assignments=[KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}], startOffsets={KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}=0}, exclusiveStartPartitions=[], endOffsets={KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}=960}, sentinel=false, checkpointed=true}]
+2025-12-16T17:55:31,171 INFO [task-runner-0-priority-0] org.apache.druid.indexing.seekablestream.SeekableStreamIndexTaskRunner - Received resume command, resuming ingestion.
+2025-12-16T17:55:31,171 INFO [task-runner-0-priority-0] org.apache.druid.indexing.seekablestream.SeekableStreamIndexTaskRunner - Finished reading partition[KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}], up to[960].
+2025-12-16T17:55:31,172 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 POST //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/end?finish=true HTTP/1.1 200
+2025-12-16T17:55:31,173 INFO [task-runner-0-priority-0] org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-kafka-supervisor-jkmocbne-1, groupId=kafka-supervisor-jkmocbne] Resetting generation and member id due to: consumer pro-actively leaving the group
+2025-12-16T17:55:31,173 INFO [task-runner-0-priority-0] org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-kafka-supervisor-jkmocbne-1, groupId=kafka-supervisor-jkmocbne] Request joining group due to: consumer pro-actively leaving the group
+2025-12-16T17:55:31,173 INFO [task-runner-0-priority-0] org.apache.kafka.clients.consumer.internals.ClassicKafkaConsumer - [Consumer clientId=consumer-kafka-supervisor-jkmocbne-1, groupId=kafka-supervisor-jkmocbne] Unsubscribed all topics or patterns and assigned partitions
+2025-12-16T17:55:31,192 INFO [task-runner-0-priority-0] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Persisted rows[960] and (estimated) bytes[359,208]
+2025-12-16T17:55:31,352 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.nested.NestedDataColumnSerializer - Column [location] serialized successfully with [2] nested columns.
+2025-12-16T17:55:31,363 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Flushed in-memory data for segment[clima-sudeste-raw_2025-12-08T00:00:00.000Z_2025-12-09T00:00:00.000Z_2025-12-16T16:55:30.926Z] spill[0] to disk in [174] ms (96 rows).
+2025-12-16T17:55:31,433 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.nested.NestedDataColumnSerializer - Column [location] serialized successfully with [2] nested columns.
+2025-12-16T17:55:31,439 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Flushed in-memory data for segment[clima-sudeste-raw_2025-12-10T00:00:00.000Z_2025-12-11T00:00:00.000Z_2025-12-16T16:55:31.181Z] spill[0] to disk in [26] ms (192 rows).
+2025-12-16T17:55:31,462 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.nested.NestedDataColumnSerializer - Column [location] serialized successfully with [2] nested columns.
+2025-12-16T17:55:31,467 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Flushed in-memory data for segment[clima-sudeste-raw_2025-12-09T00:00:00.000Z_2025-12-10T00:00:00.000Z_2025-12-16T16:55:31.103Z] spill[0] to disk in [24] ms (192 rows).
+2025-12-16T17:55:31,486 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.nested.NestedDataColumnSerializer - Column [location] serialized successfully with [2] nested columns.
+2025-12-16T17:55:31,490 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Flushed in-memory data for segment[clima-sudeste-raw_2025-12-13T00:00:00.000Z_2025-12-14T00:00:00.000Z_2025-12-16T16:56:08.200Z] spill[0] to disk in [20] ms (96 rows).
+2025-12-16T17:55:31,504 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.nested.NestedDataColumnSerializer - Column [location] serialized successfully with [2] nested columns.
+2025-12-16T17:55:31,507 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Flushed in-memory data for segment[clima-sudeste-raw_2025-12-11T00:00:00.000Z_2025-12-12T00:00:00.000Z_2025-12-16T16:55:31.224Z] spill[0] to disk in [14] ms (192 rows).
+2025-12-16T17:55:31,520 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.nested.NestedDataColumnSerializer - Column [location] serialized successfully with [2] nested columns.
+2025-12-16T17:55:31,523 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Flushed in-memory data for segment[clima-sudeste-raw_2025-12-12T00:00:00.000Z_2025-12-13T00:00:00.000Z_2025-12-16T16:55:31.271Z] spill[0] to disk in [14] ms (192 rows).
+2025-12-16T17:55:31,537 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Flushed in-memory data with commit metadata [AppenderatorDriverMetadata{segments={index_kafka_clima-sudeste-raw_37ee4133727d97b_0=[SegmentWithState{segmentIdentifier=clima-sudeste-raw_2025-12-13T00:00:00.000Z_2025-12-14T00:00:00.000Z_2025-12-16T16:56:08.200Z, state=APPENDING}, SegmentWithState{segmentIdentifier=clima-sudeste-raw_2025-12-09T00:00:00.000Z_2025-12-10T00:00:00.000Z_2025-12-16T16:55:31.103Z, state=APPENDING}, SegmentWithState{segmentIdentifier=clima-sudeste-raw_2025-12-10T00:00:00.000Z_2025-12-11T00:00:00.000Z_2025-12-16T16:55:31.181Z, state=APPENDING}, SegmentWithState{segmentIdentifier=clima-sudeste-raw_2025-12-08T00:00:00.000Z_2025-12-09T00:00:00.000Z_2025-12-16T16:55:30.926Z, state=APPENDING}, SegmentWithState{segmentIdentifier=clima-sudeste-raw_2025-12-11T00:00:00.000Z_2025-12-12T00:00:00.000Z_2025-12-16T16:55:31.224Z, state=APPENDING}, SegmentWithState{segmentIdentifier=clima-sudeste-raw_2025-12-12T00:00:00.000Z_2025-12-13T00:00:00.000Z_2025-12-16T16:55:31.271Z, state=APPENDING}]}, lastSegmentIds={index_kafka_clima-sudeste-raw_37ee4133727d97b_0=clima-sudeste-raw_2025-12-13T00:00:00.000Z_2025-12-14T00:00:00.000Z_2025-12-16T16:56:08.200Z}, callerMetadata={nextPartitions=SeekableStreamEndSequenceNumbers{stream='clima-sudeste-raw', partitionSequenceNumberMap={KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}=960}}}}] for segments: clima-sudeste-raw_2025-12-08T00:00:00.000Z_2025-12-09T00:00:00.000Z_2025-12-16T16:55:30.926Z, clima-sudeste-raw_2025-12-10T00:00:00.000Z_2025-12-11T00:00:00.000Z_2025-12-16T16:55:31.181Z, clima-sudeste-raw_2025-12-09T00:00:00.000Z_2025-12-10T00:00:00.000Z_2025-12-16T16:55:31.103Z, clima-sudeste-raw_2025-12-13T00:00:00.000Z_2025-12-14T00:00:00.000Z_2025-12-16T16:56:08.200Z, clima-sudeste-raw_2025-12-11T00:00:00.000Z_2025-12-12T00:00:00.000Z_2025-12-16T16:55:31.224Z, clima-sudeste-raw_2025-12-12T00:00:00.000Z_2025-12-13T00:00:00.000Z_2025-12-16T16:55:31.271Z
+2025-12-16T17:55:31,537 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Persisted stats: processed rows: [960], persisted rows[960], sinks: [6], total fireHydrants (across sinks): [6], persisted fireHydrants (across sinks): [6]
+2025-12-16T17:55:31,540 INFO [task-runner-0-priority-0] org.apache.druid.segment.realtime.appenderator.BaseAppenderatorDriver - Pushing [6] segments in background
+2025-12-16T17:55:31,541 INFO [task-runner-0-priority-0] org.apache.druid.segment.realtime.appenderator.BaseAppenderatorDriver - Pushing segments: [clima-sudeste-raw_2025-12-13T00:00:00.000Z_2025-12-14T00:00:00.000Z_2025-12-16T16:56:08.200Z, clima-sudeste-raw_2025-12-09T00:00:00.000Z_2025-12-10T00:00:00.000Z_2025-12-16T16:55:31.103Z, clima-sudeste-raw_2025-12-10T00:00:00.000Z_2025-12-11T00:00:00.000Z_2025-12-16T16:55:31.181Z, clima-sudeste-raw_2025-12-08T00:00:00.000Z_2025-12-09T00:00:00.000Z_2025-12-16T16:55:30.926Z, clima-sudeste-raw_2025-12-11T00:00:00.000Z_2025-12-12T00:00:00.000Z_2025-12-16T16:55:31.224Z, clima-sudeste-raw_2025-12-12T00:00:00.000Z_2025-12-13T00:00:00.000Z_2025-12-16T16:55:31.271Z]
+2025-12-16T17:55:31,541 INFO [task-runner-0-priority-0] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Persisted rows[0] and (estimated) bytes[0]
+2025-12-16T17:55:31,546 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Flushed in-memory data with commit metadata [AppenderatorDriverMetadata{segments={index_kafka_clima-sudeste-raw_37ee4133727d97b_0=[SegmentWithState{segmentIdentifier=clima-sudeste-raw_2025-12-13T00:00:00.000Z_2025-12-14T00:00:00.000Z_2025-12-16T16:56:08.200Z, state=APPENDING}, SegmentWithState{segmentIdentifier=clima-sudeste-raw_2025-12-09T00:00:00.000Z_2025-12-10T00:00:00.000Z_2025-12-16T16:55:31.103Z, state=APPENDING}, SegmentWithState{segmentIdentifier=clima-sudeste-raw_2025-12-10T00:00:00.000Z_2025-12-11T00:00:00.000Z_2025-12-16T16:55:31.181Z, state=APPENDING}, SegmentWithState{segmentIdentifier=clima-sudeste-raw_2025-12-08T00:00:00.000Z_2025-12-09T00:00:00.000Z_2025-12-16T16:55:30.926Z, state=APPENDING}, SegmentWithState{segmentIdentifier=clima-sudeste-raw_2025-12-11T00:00:00.000Z_2025-12-12T00:00:00.000Z_2025-12-16T16:55:31.224Z, state=APPENDING}, SegmentWithState{segmentIdentifier=clima-sudeste-raw_2025-12-12T00:00:00.000Z_2025-12-13T00:00:00.000Z_2025-12-16T16:55:31.271Z, state=APPENDING}]}, lastSegmentIds={index_kafka_clima-sudeste-raw_37ee4133727d97b_0=clima-sudeste-raw_2025-12-13T00:00:00.000Z_2025-12-14T00:00:00.000Z_2025-12-16T16:56:08.200Z}, callerMetadata={nextPartitions=SeekableStreamStartSequenceNumbers{stream='clima-sudeste-raw', partitionSequenceNumberMap={KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}=960}, exclusivePartitions=[]}, publishPartitions=SeekableStreamEndSequenceNumbers{stream='clima-sudeste-raw', partitionSequenceNumberMap={KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}=960}}}}] for segments: 
+2025-12-16T17:55:31,547 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Persisted stats: processed rows: [960], persisted rows[0], sinks: [6], total fireHydrants (across sinks): [6], persisted fireHydrants (across sinks): [0]
+2025-12-16T17:55:31,547 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Preparing to push (stats): processed rows: [960], sinks: [6], fireHydrants (across sinks): [6]
+2025-12-16T17:55:31,551 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.IndexMergerV9 - Merging phases[1] (indexes[1], maxColumnsToMerge[21,845]), tiers finished processed so far[0].
+2025-12-16T17:55:31,551 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.IndexMergerV9 - Performing final merge phase.
+2025-12-16T17:55:31,551 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.IndexMergerV9 - Merging phase with index count[1].
+2025-12-16T17:55:31,597 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.nested.NestedDataColumnSerializer - Column [location] serialized successfully with [2] nested columns.
+2025-12-16T17:55:31,621 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Segment[clima-sudeste-raw_2025-12-10T00:00:00.000Z_2025-12-11T00:00:00.000Z_2025-12-16T16:55:31.181Z] of 10,983 bytes built from 1 incremental persist(s) in 51ms; pushed to deep storage in 8ms. Load spec is: {"type":"local","path":"/opt/shared/segments/clima-sudeste-raw/2025-12-10T00:00:00.000Z_2025-12-11T00:00:00.000Z/2025-12-16T16:55:31.181Z/0/fee323b9-70cb-4f9f-be8d-bff7cc4e2d08/index/"}
+2025-12-16T17:55:31,622 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.IndexMergerV9 - Merging phases[1] (indexes[1], maxColumnsToMerge[21,845]), tiers finished processed so far[0].
+2025-12-16T17:55:31,622 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.IndexMergerV9 - Performing final merge phase.
+2025-12-16T17:55:31,622 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.IndexMergerV9 - Merging phase with index count[1].
+2025-12-16T17:55:31,637 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.nested.NestedDataColumnSerializer - Column [location] serialized successfully with [2] nested columns.
+2025-12-16T17:55:31,642 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Segment[clima-sudeste-raw_2025-12-08T00:00:00.000Z_2025-12-09T00:00:00.000Z_2025-12-16T16:55:30.926Z] of 8,671 bytes built from 1 incremental persist(s) in 18ms; pushed to deep storage in 1ms. Load spec is: {"type":"local","path":"/opt/shared/segments/clima-sudeste-raw/2025-12-08T00:00:00.000Z_2025-12-09T00:00:00.000Z/2025-12-16T16:55:30.926Z/0/84e99642-c115-4229-90ae-22988411c5ce/index/"}
+2025-12-16T17:55:31,643 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.IndexMergerV9 - Merging phases[1] (indexes[1], maxColumnsToMerge[21,845]), tiers finished processed so far[0].
+2025-12-16T17:55:31,643 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.IndexMergerV9 - Performing final merge phase.
+2025-12-16T17:55:31,643 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.IndexMergerV9 - Merging phase with index count[1].
+2025-12-16T17:55:31,658 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.nested.NestedDataColumnSerializer - Column [location] serialized successfully with [2] nested columns.
+2025-12-16T17:55:31,663 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Segment[clima-sudeste-raw_2025-12-09T00:00:00.000Z_2025-12-10T00:00:00.000Z_2025-12-16T16:55:31.103Z] of 10,974 bytes built from 1 incremental persist(s) in 18ms; pushed to deep storage in 1ms. Load spec is: {"type":"local","path":"/opt/shared/segments/clima-sudeste-raw/2025-12-09T00:00:00.000Z_2025-12-10T00:00:00.000Z/2025-12-16T16:55:31.103Z/0/4cda1da5-c372-4694-a9fc-8a031c51bb61/index/"}
+2025-12-16T17:55:31,664 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.IndexMergerV9 - Merging phases[1] (indexes[1], maxColumnsToMerge[21,845]), tiers finished processed so far[0].
+2025-12-16T17:55:31,664 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.IndexMergerV9 - Performing final merge phase.
+2025-12-16T17:55:31,664 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.IndexMergerV9 - Merging phase with index count[1].
+2025-12-16T17:55:31,675 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.nested.NestedDataColumnSerializer - Column [location] serialized successfully with [2] nested columns.
+2025-12-16T17:55:31,682 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Segment[clima-sudeste-raw_2025-12-13T00:00:00.000Z_2025-12-14T00:00:00.000Z_2025-12-16T16:56:08.200Z] of 8,657 bytes built from 1 incremental persist(s) in 15ms; pushed to deep storage in 2ms. Load spec is: {"type":"local","path":"/opt/shared/segments/clima-sudeste-raw/2025-12-13T00:00:00.000Z_2025-12-14T00:00:00.000Z/2025-12-16T16:56:08.200Z/0/f322ab10-e278-4d70-a248-3c06decf2305/index/"}
+2025-12-16T17:55:31,682 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.IndexMergerV9 - Merging phases[1] (indexes[1], maxColumnsToMerge[21,845]), tiers finished processed so far[0].
+2025-12-16T17:55:31,682 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.IndexMergerV9 - Performing final merge phase.
+2025-12-16T17:55:31,682 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.IndexMergerV9 - Merging phase with index count[1].
+2025-12-16T17:55:31,695 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.nested.NestedDataColumnSerializer - Column [location] serialized successfully with [2] nested columns.
+2025-12-16T17:55:31,701 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Segment[clima-sudeste-raw_2025-12-11T00:00:00.000Z_2025-12-12T00:00:00.000Z_2025-12-16T16:55:31.224Z] of 11,011 bytes built from 1 incremental persist(s) in 16ms; pushed to deep storage in 2ms. Load spec is: {"type":"local","path":"/opt/shared/segments/clima-sudeste-raw/2025-12-11T00:00:00.000Z_2025-12-12T00:00:00.000Z/2025-12-16T16:55:31.224Z/0/975967ee-5585-4ec3-896e-00c68f7ef6ab/index/"}
+2025-12-16T17:55:31,702 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.IndexMergerV9 - Merging phases[1] (indexes[1], maxColumnsToMerge[21,845]), tiers finished processed so far[0].
+2025-12-16T17:55:31,702 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.IndexMergerV9 - Performing final merge phase.
+2025-12-16T17:55:31,702 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.IndexMergerV9 - Merging phase with index count[1].
+2025-12-16T17:55:31,713 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.nested.NestedDataColumnSerializer - Column [location] serialized successfully with [2] nested columns.
+2025-12-16T17:55:31,719 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Segment[clima-sudeste-raw_2025-12-12T00:00:00.000Z_2025-12-13T00:00:00.000Z_2025-12-16T16:55:31.271Z] of 10,995 bytes built from 1 incremental persist(s) in 14ms; pushed to deep storage in 1ms. Load spec is: {"type":"local","path":"/opt/shared/segments/clima-sudeste-raw/2025-12-12T00:00:00.000Z_2025-12-13T00:00:00.000Z/2025-12-16T16:55:31.271Z/0/2ecee36a-f586-437a-8f57-261628426bd3/index/"}
+2025-12-16T17:55:31,719 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-merge] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Push complete...
+2025-12-16T17:55:31,767 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-publish] org.apache.druid.segment.realtime.appenderator.BaseAppenderatorDriver - Published [6] segments with commit metadata[{nextPartitions=SeekableStreamStartSequenceNumbers{stream='clima-sudeste-raw', partitionSequenceNumberMap={KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}=960}, exclusivePartitions=[]}, publishPartitions=SeekableStreamEndSequenceNumbers{stream='clima-sudeste-raw', partitionSequenceNumberMap={KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}=960}}}].
+2025-12-16T17:55:31,768 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-publish] org.apache.druid.segment.realtime.appenderator.BaseAppenderatorDriver - Published segments: [clima-sudeste-raw_2025-12-10T00:00:00.000Z_2025-12-11T00:00:00.000Z_2025-12-16T16:55:31.181Z, clima-sudeste-raw_2025-12-08T00:00:00.000Z_2025-12-09T00:00:00.000Z_2025-12-16T16:55:30.926Z, clima-sudeste-raw_2025-12-09T00:00:00.000Z_2025-12-10T00:00:00.000Z_2025-12-16T16:55:31.103Z, clima-sudeste-raw_2025-12-13T00:00:00.000Z_2025-12-14T00:00:00.000Z_2025-12-16T16:56:08.200Z, clima-sudeste-raw_2025-12-11T00:00:00.000Z_2025-12-12T00:00:00.000Z_2025-12-16T16:55:31.224Z, clima-sudeste-raw_2025-12-12T00:00:00.000Z_2025-12-13T00:00:00.000Z_2025-12-16T16:55:31.271Z]
+2025-12-16T17:55:31,769 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-publish] org.apache.druid.segment.realtime.appenderator.BaseAppenderatorDriver - Published segment schemas[SegmentSchemaMapping{segmentIdToMetadataMap={}, schemaFingerprintToPayloadMap={}, version='1'}].
+2025-12-16T17:55:31,769 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-publish] org.apache.druid.indexing.seekablestream.SeekableStreamIndexTaskRunner - Published 6 segments for sequence [index_kafka_clima-sudeste-raw_37ee4133727d97b_0] with metadata [AppenderatorDriverMetadata{segments={index_kafka_clima-sudeste-raw_37ee4133727d97b_0=[SegmentWithState{segmentIdentifier=clima-sudeste-raw_2025-12-13T00:00:00.000Z_2025-12-14T00:00:00.000Z_2025-12-16T16:56:08.200Z, state=APPENDING}, SegmentWithState{segmentIdentifier=clima-sudeste-raw_2025-12-09T00:00:00.000Z_2025-12-10T00:00:00.000Z_2025-12-16T16:55:31.103Z, state=APPENDING}, SegmentWithState{segmentIdentifier=clima-sudeste-raw_2025-12-10T00:00:00.000Z_2025-12-11T00:00:00.000Z_2025-12-16T16:55:31.181Z, state=APPENDING}, SegmentWithState{segmentIdentifier=clima-sudeste-raw_2025-12-08T00:00:00.000Z_2025-12-09T00:00:00.000Z_2025-12-16T16:55:30.926Z, state=APPENDING}, SegmentWithState{segmentIdentifier=clima-sudeste-raw_2025-12-11T00:00:00.000Z_2025-12-12T00:00:00.000Z_2025-12-16T16:55:31.224Z, state=APPENDING}, SegmentWithState{segmentIdentifier=clima-sudeste-raw_2025-12-12T00:00:00.000Z_2025-12-13T00:00:00.000Z_2025-12-16T16:55:31.271Z, state=APPENDING}]}, lastSegmentIds={index_kafka_clima-sudeste-raw_37ee4133727d97b_0=clima-sudeste-raw_2025-12-13T00:00:00.000Z_2025-12-14T00:00:00.000Z_2025-12-16T16:56:08.200Z}, callerMetadata={nextPartitions=SeekableStreamStartSequenceNumbers{stream='clima-sudeste-raw', partitionSequenceNumberMap={KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}=960}, exclusivePartitions=[]}, publishPartitions=SeekableStreamEndSequenceNumbers{stream='clima-sudeste-raw', partitionSequenceNumberMap={KafkaTopicPartition{partition=0, topic='null', multiTopicPartition=false}=960}}}}].
+2025-12-16T17:55:31,770 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-publish] org.apache.druid.indexing.seekablestream.SeekableStreamIndexTaskRunner - Published segments: [clima-sudeste-raw_2025-12-10T00:00:00.000Z_2025-12-11T00:00:00.000Z_2025-12-16T16:55:31.181Z, clima-sudeste-raw_2025-12-08T00:00:00.000Z_2025-12-09T00:00:00.000Z_2025-12-16T16:55:30.926Z, clima-sudeste-raw_2025-12-09T00:00:00.000Z_2025-12-10T00:00:00.000Z_2025-12-16T16:55:31.103Z, clima-sudeste-raw_2025-12-13T00:00:00.000Z_2025-12-14T00:00:00.000Z_2025-12-16T16:56:08.200Z, clima-sudeste-raw_2025-12-11T00:00:00.000Z_2025-12-12T00:00:00.000Z_2025-12-16T16:55:31.224Z, clima-sudeste-raw_2025-12-12T00:00:00.000Z_2025-12-13T00:00:00.000Z_2025-12-16T16:55:31.271Z]
+2025-12-16T17:55:31,770 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-publish] org.apache.druid.indexing.seekablestream.SeekableStreamIndexTaskRunner - Saved sequence metadata to disk: []
+2025-12-16T17:55:54,963 WARN [main-SendThread(zookeeper:2181)] org.apache.zookeeper.ClientCnxn - Client session timed out, have not heard from server in 21376ms for session id 0x100001d4d3e000e
+2025-12-16T17:55:55,709 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/current HTTP/1.1 200
+2025-12-16T17:55:55,800 WARN [main-SendThread(zookeeper:2181)] org.apache.zookeeper.ClientCnxn - Session 0x100001d4d3e000e for server zookeeper/172.20.0.2:2181, Closing socket connection. Attempting reconnect except it is a SessionExpiredException.
+org.apache.zookeeper.ClientCnxn$SessionTimeoutException: Client session timed out, have not heard from server in 21376ms for session id 0x100001d4d3e000e
+	at org.apache.zookeeper.ClientCnxn$SendThread.run(ClientCnxn.java:1257) [zookeeper-3.8.4.jar:3.8.4]
+2025-12-16T17:55:56,835 INFO [main-EventThread] org.apache.curator.framework.state.ConnectionStateManager - State change: SUSPENDED
+2025-12-16T17:55:56,846 WARN [NodeRoleWatcher[COORDINATOR]] org.apache.druid.curator.discovery.CuratorDruidNodeDiscoveryProvider$NodeRoleWatcher - Ignored event type [CONNECTION_SUSPENDED] for node watcher of role [coordinator].
+2025-12-16T17:55:56,846 WARN [NodeRoleWatcher[OVERLORD]] org.apache.druid.curator.discovery.CuratorDruidNodeDiscoveryProvider$NodeRoleWatcher - Ignored event type [CONNECTION_SUSPENDED] for node watcher of role [overlord].
+2025-12-16T17:55:58,144 INFO [main-SendThread(zookeeper:2181)] org.apache.zookeeper.ClientCnxn - Opening socket connection to server zookeeper/172.20.0.2:2181.
+2025-12-16T17:55:58,144 INFO [main-SendThread(zookeeper:2181)] org.apache.zookeeper.ClientCnxn - SASL config status: Will not attempt to authenticate using SASL (unknown error)
+2025-12-16T17:55:58,144 INFO [main-SendThread(zookeeper:2181)] org.apache.zookeeper.ClientCnxn - Socket connection established, initiating session, client: /172.20.0.5:47712, server: zookeeper/172.20.0.2:2181
+2025-12-16T17:55:58,680 INFO [main-SendThread(zookeeper:2181)] org.apache.zookeeper.ClientCnxn - Session establishment complete on server zookeeper/172.20.0.2:2181, session id = 0x100001d4d3e000e, negotiated timeout = 30000
+2025-12-16T17:55:58,701 INFO [main-EventThread] org.apache.curator.framework.state.ConnectionStateManager - State change: RECONNECTED
+2025-12-16T17:55:58,702 WARN [NodeRoleWatcher[COORDINATOR]] org.apache.druid.curator.discovery.CuratorDruidNodeDiscoveryProvider$NodeRoleWatcher - Ignored event type [CONNECTION_RECONNECTED] for node watcher of role [coordinator].
+2025-12-16T17:55:58,702 WARN [NodeRoleWatcher[OVERLORD]] org.apache.druid.curator.discovery.CuratorDruidNodeDiscoveryProvider$NodeRoleWatcher - Ignored event type [CONNECTION_RECONNECTED] for node watcher of role [overlord].
+2025-12-16T17:55:59,783 INFO [main-EventThread] org.apache.curator.framework.imps.EnsembleTracker - New config event received: {}
+2025-12-16T17:56:02,546 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.6 POST //172.20.0.5:8100/druid/v2/ HTTP/1.1 204
+2025-12-16T17:56:08,301 DEBUG [qtp2082499348-121] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:56:08,322 DEBUG [qtp2082499348-132] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 204
+2025-12-16T17:56:12,080 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments/loadCapabilities HTTP/1.1 200
+2025-12-16T17:56:17,492 DEBUG [qtp2082499348-124] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/status HTTP/1.1 200
+2025-12-16T17:56:17,495 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid/worker/v1/chat/index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl/offsets/end HTTP/1.1 200
+2025-12-16T17:56:29,810 INFO [RejectionPeriodUpdater-Exec--0] org.apache.druid.indexing.seekablestream.SeekableStreamIndexTaskRunner - Updated min and max messsage times to [-146136543-09-08T09:23:32.096Z] and [146140482-04-24T16:36:27.903Z] respectively.
+2025-12-16T17:56:30,332 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.server.coordination.BatchDataSegmentAnnouncer - Unannouncing segment[clima-sudeste-raw_2025-12-09T00:00:00.000Z_2025-12-10T00:00:00.000Z_2025-12-16T16:55:31.103Z] at path[/druid/segments/172.20.0.5:8100/172.20.0.5:8100_indexer-executor__default_tier_2025-12-16T16:55:31.033Z_eb1280beb1ba4dda93242633cda317df1]
+2025-12-16T17:56:30,333 DEBUG [SegmentChangeRequestHistory] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 200
+2025-12-16T17:56:30,336 DEBUG [SegmentChangeRequestHistory] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=6&hash=1765904168219&timeout=240000 HTTP/1.1 200
+2025-12-16T17:56:30,342 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Unannounced segment[clima-sudeste-raw_2025-12-09T00:00:00.000Z_2025-12-10T00:00:00.000Z_2025-12-16T16:55:31.103Z], scheduling drop in [30000] millisecs
+2025-12-16T17:56:30,349 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.server.coordination.BatchDataSegmentAnnouncer - Unannouncing segment[clima-sudeste-raw_2025-12-13T00:00:00.000Z_2025-12-14T00:00:00.000Z_2025-12-16T16:56:08.200Z] at path[/druid/segments/172.20.0.5:8100/172.20.0.5:8100_indexer-executor__default_tier_2025-12-16T16:55:31.033Z_eb1280beb1ba4dda93242633cda317df1]
+2025-12-16T17:56:30,350 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Unannounced segment[clima-sudeste-raw_2025-12-13T00:00:00.000Z_2025-12-14T00:00:00.000Z_2025-12-16T16:56:08.200Z], scheduling drop in [30000] millisecs
+2025-12-16T17:56:30,350 DEBUG [SegmentChangeRequestHistory] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=7&hash=1765907790330&timeout=240000 HTTP/1.1 200
+2025-12-16T17:56:30,350 DEBUG [SegmentChangeRequestHistory] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=7&hash=1765907790330&timeout=240000 HTTP/1.1 200
+2025-12-16T17:56:30,351 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.server.coordination.BatchDataSegmentAnnouncer - Unannouncing segment[clima-sudeste-raw_2025-12-12T00:00:00.000Z_2025-12-13T00:00:00.000Z_2025-12-16T16:55:31.271Z] at path[/druid/segments/172.20.0.5:8100/172.20.0.5:8100_indexer-executor__default_tier_2025-12-16T16:55:31.033Z_eb1280beb1ba4dda93242633cda317df1]
+2025-12-16T17:56:30,351 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Unannounced segment[clima-sudeste-raw_2025-12-12T00:00:00.000Z_2025-12-13T00:00:00.000Z_2025-12-16T16:55:31.271Z], scheduling drop in [30000] millisecs
+2025-12-16T17:56:30,352 DEBUG [qtp2082499348-131] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=8&hash=1765907790349&timeout=240000 HTTP/1.1 204
+2025-12-16T17:56:30,357 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.server.coordination.BatchDataSegmentAnnouncer - Unannouncing segment[clima-sudeste-raw_2025-12-11T00:00:00.000Z_2025-12-12T00:00:00.000Z_2025-12-16T16:55:31.224Z] at path[/druid/segments/172.20.0.5:8100/172.20.0.5:8100_indexer-executor__default_tier_2025-12-16T16:55:31.033Z_eb1280beb1ba4dda93242633cda317df1]
+2025-12-16T17:56:30,357 DEBUG [SegmentChangeRequestHistory] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=9&hash=1765907790351&timeout=240000 HTTP/1.1 200
+2025-12-16T17:56:30,357 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Unannounced segment[clima-sudeste-raw_2025-12-11T00:00:00.000Z_2025-12-12T00:00:00.000Z_2025-12-16T16:55:31.224Z], scheduling drop in [30000] millisecs
+2025-12-16T17:56:30,363 DEBUG [qtp2082499348-119] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=8&hash=1765907790349&timeout=240000 HTTP/1.1 204
+2025-12-16T17:56:30,364 DEBUG [SegmentChangeRequestHistory] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=10&hash=1765907790356&timeout=240000 HTTP/1.1 200
+2025-12-16T17:56:30,365 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.server.coordination.BatchDataSegmentAnnouncer - Unannouncing segment[clima-sudeste-raw_2025-12-10T00:00:00.000Z_2025-12-11T00:00:00.000Z_2025-12-16T16:55:31.181Z] at path[/druid/segments/172.20.0.5:8100/172.20.0.5:8100_indexer-executor__default_tier_2025-12-16T16:55:31.033Z_eb1280beb1ba4dda93242633cda317df1]
+2025-12-16T17:56:30,365 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Unannounced segment[clima-sudeste-raw_2025-12-10T00:00:00.000Z_2025-12-11T00:00:00.000Z_2025-12-16T16:55:31.181Z], scheduling drop in [30000] millisecs
+2025-12-16T17:56:30,366 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.server.coordination.BatchDataSegmentAnnouncer - Unannouncing segment[clima-sudeste-raw_2025-12-08T00:00:00.000Z_2025-12-09T00:00:00.000Z_2025-12-16T16:55:30.926Z] at path[/druid/segments/172.20.0.5:8100/172.20.0.5:8100_indexer-executor__default_tier_2025-12-16T16:55:31.033Z_eb1280beb1ba4dda93242633cda317df1]
+2025-12-16T17:56:30,366 DEBUG [SegmentChangeRequestHistory] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=11&hash=1765907790363&timeout=240000 HTTP/1.1 200
+2025-12-16T17:56:30,367 DEBUG [qtp2082499348-131] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=10&hash=1765907790356&timeout=240000 HTTP/1.1 204
+2025-12-16T17:56:30,368 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.curator.announcement.PathChildrenAnnouncer - Unannouncing [/druid/segments/172.20.0.5:8100/172.20.0.5:8100_indexer-executor__default_tier_2025-12-16T16:55:31.033Z_eb1280beb1ba4dda93242633cda317df1]
+2025-12-16T17:56:30,385 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.realtime.appenderator.StreamAppenderator - Unannounced segment[clima-sudeste-raw_2025-12-08T00:00:00.000Z_2025-12-09T00:00:00.000Z_2025-12-16T16:55:30.926Z], scheduling drop in [30000] millisecs
+2025-12-16T17:56:30,385 INFO [[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl]-appenderator-persist] org.apache.druid.segment.realtime.appenderator.StreamAppenderatorDriver - Successfully handed off [6] segments.
+2025-12-16T17:56:30,395 INFO [task-runner-0-priority-0] org.apache.druid.indexing.seekablestream.SeekableStreamIndexTaskRunner - Handoff complete for segments: DataSegment{binaryVersion=9, id=clima-sudeste-raw_2025-12-10T00:00:00.000Z_2025-12-11T00:00:00.000Z_2025-12-16T16:55:31.181Z, loadSpec={type=>local, path=>/opt/shared/segments/clima-sudeste-raw/2025-12-10T00:00:00.000Z_2025-12-11T00:00:00.000Z/2025-12-16T16:55:31.181Z/0/fee323b9-70cb-4f9f-be8d-bff7cc4e2d08/index/}, dimensions=[location.lat, location.lon, city, location, temperature_c, humidity_percent, solar_irradiance, wind_speed_ms, sensor_id], metrics=[], projections=null, shardSpec=NumberedShardSpec{partitionNum=0, partitions=0}, lastCompactionState=null, size=10983}, DataSegment{binaryVersion=9, id=clima-sudeste-raw_2025-12-08T00:00:00.000Z_2025-12-09T00:00:00.000Z_2025-12-16T16:55:30.926Z, loadSpec={type=>local, path=>/opt/shared/segments/clima-sudeste-raw/2025-12-08T00:00:00.000Z_2025-12-09T00:00:00.000Z/2025-12-16T16:55:30.926Z/0/84e99642-c115-4229-90ae-22988411c5ce/index/}, dimensions=[location.lat, location.lon, city, location, temperature_c, humidity_percent, solar_irradiance, wind_speed_ms, sensor_id], metrics=[], projections=null, shardSpec=NumberedShardSpec{partitionNum=0, partitions=0}, lastCompactionState=null, size=8671}, DataSegment{binaryVersion=9, id=clima-sudeste-raw_2025-12-09T00:00:00.000Z_2025-12-10T00:00:00.000Z_2025-12-16T16:55:31.103Z, loadSpec={type=>local, path=>/opt/shared/segments/clima-sudeste-raw/2025-12-09T00:00:00.000Z_2025-12-10T00:00:00.000Z/2025-12-16T16:55:31.103Z/0/4cda1da5-c372-4694-a9fc-8a031c51bb61/index/}, dimensions=[location.lat, location.lon, city, location, temperature_c, humidity_percent, solar_irradiance, wind_speed_ms, sensor_id], metrics=[], projections=null, shardSpec=NumberedShardSpec{partitionNum=0, partitions=0}, lastCompactionState=null, size=10974}, DataSegment{binaryVersion=9, id=clima-sudeste-raw_2025-12-13T00:00:00.000Z_2025-12-14T00:00:00.000Z_2025-12-16T16:56:08.200Z, loadSpec={type=>local, path=>/opt/shared/segments/clima-sudeste-raw/2025-12-13T00:00:00.000Z_2025-12-14T00:00:00.000Z/2025-12-16T16:56:08.200Z/0/f322ab10-e278-4d70-a248-3c06decf2305/index/}, dimensions=[location.lat, location.lon, city, location, temperature_c, humidity_percent, solar_irradiance, wind_speed_ms, sensor_id], metrics=[], projections=null, shardSpec=NumberedShardSpec{partitionNum=0, partitions=0}, lastCompactionState=null, size=8657}, DataSegment{binaryVersion=9, id=clima-sudeste-raw_2025-12-11T00:00:00.000Z_2025-12-12T00:00:00.000Z_2025-12-16T16:55:31.224Z, loadSpec={type=>local, path=>/opt/shared/segments/clima-sudeste-raw/2025-12-11T00:00:00.000Z_2025-12-12T00:00:00.000Z/2025-12-16T16:55:31.224Z/0/975967ee-5585-4ec3-896e-00c68f7ef6ab/index/}, dimensions=[location.lat, location.lon, city, location, temperature_c, humidity_percent, solar_irradiance, wind_speed_ms, sensor_id], metrics=[], projections=null, shardSpec=NumberedShardSpec{partitionNum=0, partitions=0}, lastCompactionState=null, size=11011}, DataSegment{binaryVersion=9, id=clima-sudeste-raw_2025-12-12T00:00:00.000Z_2025-12-13T00:00:00.000Z_2025-12-16T16:55:31.271Z, loadSpec={type=>local, path=>/opt/shared/segments/clima-sudeste-raw/2025-12-12T00:00:00.000Z_2025-12-13T00:00:00.000Z/2025-12-16T16:55:31.271Z/0/2ecee36a-f586-437a-8f57-261628426bd3/index/}, dimensions=[location.lat, location.lon, city, location, temperature_c, humidity_percent, solar_irradiance, wind_speed_ms, sensor_id], metrics=[], projections=null, shardSpec=NumberedShardSpec{partitionNum=0, partitions=0}, lastCompactionState=null, size=10995}
+2025-12-16T17:56:30,399 INFO [task-runner-0-priority-0] org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-kafka-supervisor-jkmocbne-1, groupId=kafka-supervisor-jkmocbne] Resetting generation and member id due to: consumer pro-actively leaving the group
+2025-12-16T17:56:30,399 INFO [task-runner-0-priority-0] org.apache.kafka.clients.consumer.internals.ConsumerCoordinator - [Consumer clientId=consumer-kafka-supervisor-jkmocbne-1, groupId=kafka-supervisor-jkmocbne] Request joining group due to: consumer pro-actively leaving the group
+2025-12-16T17:56:30,404 INFO [task-runner-0-priority-0] org.apache.kafka.common.metrics.Metrics - Metrics scheduler closed
+2025-12-16T17:56:30,404 INFO [task-runner-0-priority-0] org.apache.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2025-12-16T17:56:30,404 INFO [task-runner-0-priority-0] org.apache.kafka.common.metrics.Metrics - Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2025-12-16T17:56:30,404 INFO [task-runner-0-priority-0] org.apache.kafka.common.metrics.Metrics - Metrics reporters closed
+2025-12-16T17:56:30,408 INFO [task-runner-0-priority-0] org.apache.kafka.common.utils.AppInfoParser - App info kafka.consumer for consumer-kafka-supervisor-jkmocbne-1 unregistered
+2025-12-16T17:56:30,409 INFO [task-runner-0-priority-0] org.apache.druid.curator.announcement.PathChildrenAnnouncer - Unannouncing [/druid/internal-discovery/PEON/172.20.0.5:8100]
+2025-12-16T17:56:30,415 INFO [task-runner-0-priority-0] org.apache.druid.curator.discovery.CuratorDruidNodeAnnouncer - Unannounced self [{"druidNode":{"service":"druid/middleManager","host":"172.20.0.5","bindOnHost":false,"plaintextPort":8100,"port":-1,"tlsPort":-1,"enablePlaintextPort":true,"enableTlsPort":false},"nodeType":"peon","services":{"dataNodeService":{"type":"dataNodeService","tier":"_default_tier","maxSize":0,"type":"indexer-executor","serverType":"indexer-executor","priority":0},"lookupNodeService":{"type":"lookupNodeService","lookupTier":"__default"}},"startTime":"2025-12-16T16:55:30.100Z"}].
+2025-12-16T17:56:30,415 INFO [task-runner-0-priority-0] org.apache.druid.curator.announcement.PathChildrenAnnouncer - Unannouncing [/druid/announcements/172.20.0.5:8100]
+2025-12-16T17:56:30,430 INFO [task-runner-0-priority-0] org.apache.druid.indexing.worker.executor.ExecutorLifecycle - Task completed with status: {
+  "id" : "index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl",
+  "status" : "SUCCESS",
+  "duration" : 3660379,
+  "errorMsg" : null,
+  "location" : {
+    "host" : null,
+    "port" : -1,
+    "tlsPort" : -1
+  }
+}
+2025-12-16T17:56:30,436 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle - Stopping lifecycle [module] stage [ANNOUNCEMENTS]
+2025-12-16T17:56:30,441 DEBUG [main] org.apache.druid.jetty.RequestLog - 172.20.0.4 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=12&hash=1765907790366&timeout=240000 HTTP/1.1 500
+2025-12-16T17:56:30,442 DEBUG [main] org.apache.druid.jetty.RequestLog - 172.20.0.6 GET //172.20.0.5:8100/druid-internal/v1/segments?counter=12&hash=1765907790366&timeout=240000 HTTP/1.1 500
+2025-12-16T17:56:30,444 INFO [main] org.apache.druid.curator.announcement.PathChildrenAnnouncer - Unannouncing [/druid/segments/172.20.0.5:8100/172.20.0.5:8100_indexer-executor__default_tier_2025-12-16T16:55:30.124Z_04bfff630a0f45baab01be2bae077cf60]
+2025-12-16T17:56:30,448 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle - Stopping lifecycle [module] stage [SERVER]
+2025-12-16T17:56:30,452 INFO [main] org.eclipse.jetty.server.AbstractConnector - Stopped ServerConnector@5cc87de4{HTTP/1.1, (http/1.1)}{0.0.0.0:8100}
+2025-12-16T17:56:30,452 INFO [main] org.eclipse.jetty.server.session - node0 Stopped scavenging
+2025-12-16T17:56:30,454 INFO [main] org.eclipse.jetty.server.handler.ContextHandler - Stopped o.e.j.s.ServletContextHandler@6e612122{/,null,STOPPED}
+2025-12-16T17:56:30,455 INFO [main] org.apache.druid.indexing.overlord.SingleTaskBackgroundRunner - Starting graceful shutdown of task[index_kafka_clima-sudeste-raw_37ee4133727d97b_hblpbhkl].
+2025-12-16T17:56:30,455 INFO [main] org.apache.druid.indexing.seekablestream.SeekableStreamIndexTaskRunner - Stopping forcefully (status: [PUBLISHING])
+2025-12-16T17:56:30,455 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle - Stopping lifecycle [module] stage [NORMAL]
+2025-12-16T17:56:30,455 INFO [main] org.apache.druid.server.coordination.SegmentBootstrapper - Stopping...
+2025-12-16T17:56:30,455 INFO [main] org.apache.druid.server.coordination.SegmentBootstrapper - Stopped.
+2025-12-16T17:56:30,456 INFO [main] org.apache.druid.server.coordination.ZkCoordinator - Stopping ZkCoordinator for [DruidServerMetadata{name='172.20.0.5:8100', hostAndPort='172.20.0.5:8100', hostAndTlsPort='null', maxSize=0, tier='_default_tier', type=indexer-executor, priority=0}]
+2025-12-16T17:56:30,462 INFO [LookupExtractorFactoryContainerProvider-MainThread] org.apache.druid.query.lookup.LookupReferencesManager - Lookup Management loop exited. Lookup notices are not handled anymore.
+2025-12-16T17:56:30,464 INFO [Curator-Framework-0] org.apache.curator.framework.imps.CuratorFrameworkImpl - backgroundOperationsLoop exiting
+2025-12-16T17:56:30,570 INFO [main] org.apache.zookeeper.ZooKeeper - Session: 0x100001d4d3e000e closed
+2025-12-16T17:56:30,570 INFO [main-EventThread] org.apache.zookeeper.ClientCnxn - EventThread shut down for session: 0x100001d4d3e000e
+2025-12-16T17:56:30,575 INFO [main] org.apache.druid.java.util.common.lifecycle.Lifecycle - Stopping lifecycle [module] stage [INIT]
+Finished peon task

@@ -1,0 +1,140 @@
+version: "3.8"
+
+volumes:
+  metadata_data: {}
+  middle_var: {}
+  historical_var: {}
+  broker_var: {}
+  coordinator_var: {}
+  router_var: {}
+  druid_shared: {}
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    volumes:
+      - metadata_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=druid
+      - POSTGRES_USER=druid
+      - POSTGRES_DB=druid
+    networks:
+      - druid-net
+
+  zookeeper:
+    container_name: zookeeper
+    image: zookeeper:3.5.10
+    ports:
+      - "2181:2181"
+    environment:
+      - ZOO_MY_ID=1
+    networks:
+      - druid-net
+
+  coordinator:
+    image: apache/druid:34.0.0
+    container_name: coordinator
+    user: "0:0"
+    volumes:
+      - /home/gabriel/Documentos/UNIFEI/IC - DataOps/ApacheDruid/volumes/druid_shared:/opt/shared
+      - /home/gabriel/Documentos/UNIFEI/IC - DataOps/ApacheDruid/volumes/coordinator_var:/opt/druid/var
+    depends_on:
+      - zookeeper
+      - postgres
+    ports:
+      - "8081:8081"
+    command:
+      - coordinator
+    env_file:
+      - environment
+    networks:
+      - druid-net
+
+  broker:
+    image: apache/druid:34.0.0
+    container_name: broker
+    user: "0:0"
+    volumes:
+      - /home/gabriel/Documentos/UNIFEI/IC - DataOps/ApacheDruid/volumes/broker_var:/opt/druid/var
+      - /home/gabriel/Documentos/UNIFEI/IC - DataOps/ApacheDruid/volumes/druid_shared:/opt/shared
+    depends_on:
+      - zookeeper
+      - postgres
+      - coordinator
+    ports:
+      - "8082:8082"
+    command:
+      - broker
+    env_file:
+      - environment
+    networks:
+      - druid-net
+
+  historical:
+    image: apache/druid:34.0.0
+    container_name: historical
+    user: "0:0"
+    volumes:
+      - /home/gabriel/Documentos/UNIFEI/IC - DataOps/ApacheDruid/volumes/druid_shared:/opt/shared
+      - /home/gabriel/Documentos/UNIFEI/IC - DataOps/ApacheDruid/volumes/historical_var:/opt/druid/var
+    depends_on: 
+      - zookeeper
+      - postgres
+      - coordinator
+    ports:
+      - "8083:8083"
+    command:
+      - historical
+    env_file:
+      - environment
+    networks:
+      - druid-net
+
+  middlemanager:
+    image: apache/druid:34.0.0
+    container_name: middlemanager
+    user: "0:0"
+    volumes:
+      - /home/gabriel/Documentos/UNIFEI/IC - DataOps/ApacheDruid/volumes/druid_shared:/opt/shared
+      - /home/gabriel/Documentos/UNIFEI/IC - DataOps/ApacheDruid/volumes/middle_var:/opt/druid/var
+    depends_on: 
+      - zookeeper
+      - postgres
+      - coordinator
+    ports:
+      - "8091:8091"
+      - "8100-8105:8100-8105"
+    command:
+      - middleManager
+    env_file:
+      - environment
+    networks:
+      - druid-net
+
+  router:
+    image: apache/druid:34.0.0
+    container_name: router
+    user: "0:0"
+    volumes:
+      - /home/gabriel/Documentos/UNIFEI/IC - DataOps/ApacheDruid/volumes/router_var:/opt/druid/var
+      - /home/gabriel/Documentos/UNIFEI/IC - DataOps/ApacheDruid/volumes/druid_shared:/opt/shared
+    depends_on:
+      - zookeeper
+      - postgres
+      - coordinator
+    ports:
+      - "8888:8888"
+    command:
+      - router
+    env_file:
+      - environment
+    networks:
+      - druid-net
+
+# A CORREÇÃO PRINCIPAL ESTÁ AQUI EMBAIXO (Indentação correta)
+networks:
+  druid-net:
+    external: true
