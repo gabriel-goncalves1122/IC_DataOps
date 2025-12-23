@@ -1,0 +1,49 @@
+# --- Python (Bytecode e Cache) ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- Ambientes Virtuais (VENV) ---
+# Ignora a pasta venv que está dentro de ApacheKafka e qualquer outra
+venv/
+.venv/
+env/
+ENV/
+
+# --- Docker & Volumes de Dados (CRÍTICO) ---
+# Impede o upload dos dados brutos do Druid e Kafka (arquivos pesados)
+**/volumes/
+ApacheDruid/volumes/
+metadata_data/
+middle_var/
+historical_var/
+broker_var/
+coordinator_var/
+router_var/
+druid_shared/
+
+# --- Logs ---
+# Ignora logs de execução e a pasta logs que vi na sua imagem
+*.log
+logs/
+ApacheKafka/logs/
+
+# --- IDEs e Sistema Operacional ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- Arquivos Temporários de Documentação ---
+# Mantém os PDFs finais, mas ignora temporários de LaTeX ou Word se houver
+*.aux
+*.log
+*.out
+*.toc
+~$*
+
+# --- Credenciais (Opcional) ---
+# Se o arquivo 'environment' tiver senhas REAIS de produção, descomente abaixo.
+# Para IC local com senhas padrão (druid/druid), pode manter comentado.
+# .env
+# environment
