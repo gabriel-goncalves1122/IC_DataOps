@@ -178,7 +178,8 @@ services:
   # 3. VISUALIZAÇÃO (SUPERSET)
   # =========================================
   superset:
-    image: apache/superset:latest
+    build: ./docker         # Caminho para a pasta do Dockerfile
+    image: custom-superset:1.0   # Nome da sua imagem
     container_name: superset
     ports:
       - "8088:8088"
