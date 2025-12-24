@@ -1,4 +1,4 @@
-version: "3.8"
+version: '3.8'
 
 volumes:
   metadata_data: {}
@@ -9,7 +9,46 @@ volumes:
   router_var: {}
   druid_shared: {}
 
+networks:
+  druid-net:
+    driver: bridge
+
 services:
+  # =========================================
+  # 1. ECOSSISTEMA KAFKA
+  # =========================================
+  zookeeper-kafka:
+    image: confluentinc/cp-zookeeper:7.4.1
+    container_name: zookeeper-kafka
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "22181:2181" # Porta alterada para não conflitar com o ZK do Druid
+    networks:
+      - druid-net
+
+  kafka:
+    image: confluentinc/cp-kafka:7.4.1
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper-kafka:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+    depends_on:
+      - zookeeper-kafka
+    networks:
+      - druid-net
+
+  # =========================================
+  # 2. ECOSSISTEMA DRUID
+  # =========================================
   postgres:
     container_name: postgres
     image: postgres:latest
@@ -24,6 +63,7 @@ services:
     networks:
       - druid-net
 
+  # Zookeeper dedicado ao Cluster Druid
   zookeeper:
     container_name: zookeeper
     image: zookeeper:3.5.10
@@ -134,7 +174,18 @@ services:
     networks:
       - druid-net
 
-# A CORREÇÃO PRINCIPAL ESTÁ AQUI EMBAIXO (Indentação correta)
-networks:
-  druid-net:
-    external: true
+  # =========================================
+  # 3. VISUALIZAÇÃO (SUPERSET)
+  # =========================================
+  superset:
+    image: apache/superset:latest
+    container_name: superset
+    ports:
+      - "8088:8088"
+    networks:
+      - druid-net
+    environment:
+      SUPERSET_SECRET_KEY: "minha-chave-secreta-ic-dataops-unifei"
+    depends_on:
+      - postgres
+    restart: unless-stopped
