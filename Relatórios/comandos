@@ -12,7 +12,7 @@ sudo chown -R $USER:$USER .
 # Subir todo o ambiente (Kafka, Druid, Superset) em segundo plano
 docker compose up -d
 
-# Subir forçando a reconstrução da imagem do Superset (após alterar Dockerfile)
+# Subir forçando a reconstrução da imagem do Superset 
 docker compose up -d --build
 
 # Parar e remover os containers (mas mantém os dados nos volumes)
