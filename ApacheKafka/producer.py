@@ -6,7 +6,7 @@ from kafka import KafkaProducer
 from instrumentation import monitor_performance, MetricsTracker
 
 # --- CONFIGURAÇÕES ---
-TOPIC_DATA = 'clima-sudeste-raw'
+TOPIC_DATA = 'clima-sudeste'
 KAFKA_BOOTSTRAP = 'localhost:9092'
 
 CITIES = [
