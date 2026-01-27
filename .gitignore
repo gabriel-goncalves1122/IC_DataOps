@@ -4,14 +4,22 @@ __pycache__/
 *$py.class
 
 # --- Ambientes Virtuais (VENV) ---
-# Ignora a pasta venv que está dentro de ApacheKafka e qualquer outra
 venv/
 .venv/
 env/
 ENV/
 
-# --- Docker & Volumes de Dados (CRÍTICO) ---
-# Impede o upload dos dados brutos do Druid e Kafka (arquivos pesados)
+# --- DADOS MASSIVOS (CRÍTICO) ---
+# Ignora arquivos pesados de dados em qualquer pasta
+*.csv
+*.zip
+*.parquet
+*.json.gz
+
+# Se você tiver algum CSV pequeno de configuração que PRECISE subir, 
+# você pode forçar a adição dele depois com 'git add -f arquivo.csv'
+
+# --- Docker & Volumes de Dados ---
 **/volumes/
 ApacheDruid/volumes/
 metadata_data/
@@ -23,10 +31,10 @@ router_var/
 druid_shared/
 
 # --- Logs ---
-# Ignora logs de execução e a pasta logs que vi na sua imagem
 *.log
 logs/
 ApacheKafka/logs/
+*.out
 
 # --- IDEs e Sistema Operacional ---
 .vscode/
@@ -34,16 +42,7 @@ ApacheKafka/logs/
 .DS_Store
 Thumbs.db
 
-# --- Arquivos Temporários de Documentação ---
-# Mantém os PDFs finais, mas ignora temporários de LaTeX ou Word se houver
+# --- Arquivos Temporários ---
 *.aux
-*.log
-*.out
 *.toc
 ~$*
-
-# --- Credenciais (Opcional) ---
-# Se o arquivo 'environment' tiver senhas REAIS de produção, descomente abaixo.
-# Para IC local com senhas padrão (druid/druid), pode manter comentado.
-# .env
-# environment
