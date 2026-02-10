@@ -1,51 +1,46 @@
-# 🌦️ DataOps Pipeline: Monitoramento Climático & Observabilidade
+# 🌦️🔥 DataOps Pipeline: Monitoramento Climático & Focos de Incêndio
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python&logoColor=white)
 ![Apache Kafka](https://img.shields.io/badge/Apache_Kafka-Streaming-black?logo=apachekafka&logoColor=white)
 ![Apache Druid](https://img.shields.io/badge/Apache_Druid-OLAP-cyan?logo=apache&logoColor=white)
+![Apache Superset](https://img.shields.io/badge/Apache_Superset-Viz-red?logo=apache&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-Container-blue?logo=docker&logoColor=white)
 
 Este repositório contém o código-fonte e a infraestrutura de um projeto de **Iniciação Científica (IC)** desenvolvido na **UNIFEI** (Universidade Federal de Itajubá).
 
-O projeto implementa um pipeline de Engenharia de Dados focado em **DataOps**, capaz de ingerir, processar e analisar dados meteorológicos em tempo real, além de possuir um sistema de **auto-telemetria** para monitorar a saúde da própria ingestão.
+O projeto implementa uma arquitetura moderna de **DataOps** para ingestão e análise de Big Data em tempo real, orquestrada via Docker.
+
+---
 
 ## 🏗️ Arquitetura do Projeto
 
-O sistema opera em um fluxo contínuo de Streaming:
+O sistema opera com dois pipelines principais de ingestão:
 
-1.  **Fonte de Dados:** API NASA POWER (Dados horários de Temperatura, Umidade, Radiação Solar e Vento).
-2.  **Ingestão (Producers):** Scripts Python otimizados com **Decorators** (`@monitor_performance`) para instrumentação automática.
-3.  **Message Broker:** Apache Kafka (Gerenciamento de filas e desacoplamento).
-4.  **Armazenamento OLAP:** Apache Druid (Análise exploratória e agregações em tempo real).
+1.  **Pipeline Climático:**
+    - **Fonte:** API NASA POWER (Dados horários).
+    - **Foco:** Temperatura, Umidade, Radiação Solar.
+    - **Mecanismo:** Requests HTTP com instrumentação de performance.
 
-### 🔄 Fluxos de Dados (Topics)
+2.  **Pipeline Geoespacial (Queimadas):**
+    - **Fonte:** INPE BDQueimadas (CSVs massivos).
+    - **Foco:** Focos de calor, FRP (Fire Radiative Power) e Risco de Fogo.
+    - **Mecanismo:** Processamento em Batch/Streaming (Chunking) para arquivos grandes.
 
-- `clima-sudeste-raw`: Dados meteorológicos brutos de múltiplas cidades (SP, Itajubá, RJ, BH).
-- `system-metrics`: Metadados de performance (Latência de API, Tempo de ingestão Kafka, Taxas de Erro).
+**Stack Tecnológica:**
 
-## 🚀 Funcionalidades Chave
+- **Ingestão:** Scripts Python otimizados (`kafka-python`, `pandas`).
+- **Buffer:** Apache Kafka (Desacoplamento).
+- **Armazenamento:** Apache Druid (Banco OLAP com extensão espacial).
+- **Visualização:** Apache Superset (Dashboards e Mapas).
 
-- **Ingestão Multi-Cidades:** Monitoramento simultâneo de diversas localidades geográficas.
-- **Self-Monitoring (Observabilidade):** O sistema monitora a si mesmo. O código Python envia métricas de latência e throughput para o Druid, permitindo benchmarks de performance (Kafka vs API Externa).
-- **Schema Evolution:** Suporte a dados JSON complexos e tipagem rigorosa no Druid.
-- **Alta Disponibilidade:** Infraestrutura totalmente containerizada via Docker Compose.
+---
 
-## 🛠️ Tecnologias Utilizadas
-
-- **Linguagem:** Python 3.12+ (Libs: `kafka-python`, `requests`).
-- **Streaming:** Apache Kafka & Zookeeper.
-- **Banco de Dados:** Apache Druid (Historical, MiddleManager, Broker, Coordinator).
-- **Infraestrutura:** Docker & Docker Compose.
-
-## 📦 Como Executar
-
-### Pré-requisitos
-
-- Docker e Docker Compose instalados.
-- Python 3.x instalado.
+## 🚀 Como Executar (Setup Inicial)
 
 ### 1. Subir a Infraestrutura
 
+Este comando inicia o Kafka, Zookeeper, Cluster Druid e o Superset (via imagem customizada).
+
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
