@@ -46,3 +46,7 @@ Thumbs.db
 *.aux
 *.toc
 ~$*
+
+data/
+venv/
+__pycache__/
