@@ -1,27 +1,38 @@
-# --- Python (Bytecode e Cache) ---
+# ==========================================
+# PYTHON E CACHE
+# ==========================================
 __pycache__/
 *.py[cod]
 *$py.class
+.pytest_cache/
 
-# --- Ambientes Virtuais (VENV) ---
+# ==========================================
+# AMBIENTES VIRTUAIS
+# ==========================================
 venv/
 .venv/
 env/
 ENV/
 
-# --- DADOS MASSIVOS (CRÍTICO) ---
-# Ignora arquivos pesados de dados em qualquer pasta
+# ==========================================
+# DADOS MASSIVOS E CONTROLE DE ESTADO (CRÍTICO)
+# ==========================================
+# Ignora datasets pesados
 *.csv
 *.zip
 *.parquet
 *.json.gz
 
-# Se você tiver algum CSV pequeno de configuração que PRECISE subir, 
-# você pode forçar a adição dele depois com 'git add -f arquivo.csv'
+# Ignora a pasta de dados brutos completamente
+data/raw/
 
-# --- Docker & Volumes de Dados ---
-**/volumes/
-ApacheDruid/volumes/
+# Ignora o arquivo de controle de estado do produtor Kafka
+checkpoint_ingestao.txt
+data/raw/checkpoint_ingestao.txt
+
+# ==========================================
+# VOLUMES DOCKER (INFRAESTRUTURA)
+# ==========================================
 metadata_data/
 middle_var/
 historical_var/
@@ -29,24 +40,20 @@ broker_var/
 coordinator_var/
 router_var/
 druid_shared/
+**/volumes/
 
-# --- Logs ---
+# ==========================================
+# LOGS E TEMPORÁRIOS
+# ==========================================
 *.log
 logs/
-ApacheKafka/logs/
 *.out
-
-# --- IDEs e Sistema Operacional ---
-.vscode/
-.idea/
 .DS_Store
 Thumbs.db
-
-# --- Arquivos Temporários ---
-*.aux
-*.toc
 ~$*
 
-data/
-venv/
-__pycache__/
+# ==========================================
+# IDEs E EDITORES
+# ==========================================
+.vscode/
+.idea/

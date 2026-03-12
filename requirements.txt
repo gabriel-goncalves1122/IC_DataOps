@@ -1,9 +1,10 @@
 # Bibliotecas Base
 requests==2.31.0
 pandas==2.2.0
+pyarrow
 
 # Ingestão e Mensageria
-kafka-python==2.0.2
+kafka-python-ng
 
 # Inteligência Geoespacial
 geopandas>=1.0.0
