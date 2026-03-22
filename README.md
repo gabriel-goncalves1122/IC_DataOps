@@ -62,6 +62,10 @@ Clone o repositório e inicialize a rede de containers (Zookeeper, Kafka, Druid,
 docker compose up -d
 ```
 
+### 3. Inicializando o Apache Superset
+
+Como o Superset necessita de configurações de segurança e metadados internos, execute os comandos abaixo em sequência para preparar a camada visual:
+
 #### 3.1 Criar o usuário administrador do CCO
 
     docker exec -it superset superset fab create-admin \
@@ -79,7 +83,7 @@ docker compose up -d
 
     docker exec -it superset superset init
 
-# 4. Acessando as Interfaces
+### 4. Acessando as Interfaces
 
 Com tudo rodando, acesse através do seu navegador:
 
