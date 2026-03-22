@@ -62,7 +62,7 @@ Clone o repositório e inicialize a rede de containers (Zookeeper, Kafka, Druid,
 docker compose up -d
 ```
 
-# 3.1 Criar o usuário administrador do CCO
+#### 3.1 Criar o usuário administrador do CCO
 
     docker exec -it superset superset fab create-admin \
     --username admin \
@@ -71,11 +71,11 @@ docker compose up -d
     --email admin@superset.com \
     --password admin
 
-# 3.2 Atualizar as migrações do banco de dados interno
+#### 3.2 Atualizar as migrações do banco de dados interno
 
     docker exec -it superset superset db upgrade
 
-# 3.3 Inicializar papéis e permissões padrão
+#### 3.3 Inicializar papéis e permissões padrão
 
     docker exec -it superset superset init
 
