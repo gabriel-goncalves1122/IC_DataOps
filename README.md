@@ -1,46 +1,96 @@
-# 🌦️🔥 DataOps Pipeline: Monitoramento Climático & Focos de Incêndio
+# 🔥 CCO-DataOps: Sistema de Inteligência e Resposta a Desastres Ambientais
 
-![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python&logoColor=white)
-![Apache Kafka](https://img.shields.io/badge/Apache_Kafka-Streaming-black?logo=apachekafka&logoColor=white)
-![Apache Druid](https://img.shields.io/badge/Apache_Druid-OLAP-cyan?logo=apache&logoColor=white)
-![Apache Superset](https://img.shields.io/badge/Apache_Superset-Viz-red?logo=apache&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-Container-blue?logo=docker&logoColor=white)
+![Version](https://img.shields.io/badge/version-v2.0.0-success?style=flat-square)
+![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python&logoColor=white&style=flat-square)
+![Apache Kafka](https://img.shields.io/badge/Apache_Kafka-Streaming-black?logo=apachekafka&logoColor=white&style=flat-square)
+![Apache Druid](https://img.shields.io/badge/Apache_Druid-OLAP-cyan?logo=apache&logoColor=white&style=flat-square)
+![Apache Superset](https://img.shields.io/badge/Apache_Superset-Viz-red?logo=apache&logoColor=white&style=flat-square)
+![Docker](https://img.shields.io/badge/Docker-Container-blue?logo=docker&logoColor=white&style=flat-square)
 
-Este repositório contém o código-fonte e a infraestrutura de um projeto de **Iniciação Científica (IC)** desenvolvido na **UNIFEI** (Universidade Federal de Itajubá).
+Bem-vindo ao repositório do **CCO-DataOps**, uma infraestrutura analítica de ponta a ponta desenvolvida para atuar como o núcleo de um Centro de Controle e Operações (CCO).
 
-O projeto implementa uma arquitetura moderna de **DataOps** para ingestão e análise de Big Data em tempo real, orquestrada via Docker.
-
----
-
-## 🏗️ Arquitetura do Projeto
-
-O sistema opera com dois pipelines principais de ingestão:
-
-1.  **Pipeline Climático:**
-    - **Fonte:** API NASA POWER (Dados horários).
-    - **Foco:** Temperatura, Umidade, Radiação Solar.
-    - **Mecanismo:** Requests HTTP com instrumentação de performance.
-
-2.  **Pipeline Geoespacial (Queimadas):**
-    - **Fonte:** INPE BDQueimadas (CSVs massivos).
-    - **Foco:** Focos de calor, FRP (Fire Radiative Power) e Risco de Fogo.
-    - **Mecanismo:** Processamento em Batch/Streaming (Chunking) para arquivos grandes.
-
-**Stack Tecnológica:**
-
-- **Ingestão:** Scripts Python otimizados (`kafka-python`, `pandas`).
-- **Buffer:** Apache Kafka (Desacoplamento).
-- **Armazenamento:** Apache Druid (Banco OLAP com extensão espacial).
-- **Visualização:** Apache Superset (Dashboards e Mapas).
+Este sistema processa dados climáticos e coordenadas de focos de incêndio em tempo real, fornecendo consciência situacional em sub-segundos para a tomada de decisão em cenários de missão crítica.
 
 ---
 
-## 🚀 Como Executar (Setup Inicial)
+## 🧠 A Ciência por Trás: Superando o Gargalo de I/O
 
-### 1. Subir a Infraestrutura
+Em arquiteturas de _Big Data_ focadas em resposta a desastres, o desafio não é apenas armazenar os dados, mas sim a **latência de recuperação**. Quando um incêndio avança em direção a uma subestação de energia, o sistema não pode demorar minutos para varrer milhões de coordenadas espaciais.
 
-Este comando inicia o Kafka, Zookeeper, Cluster Druid e o Superset (via imagem customizada).
+A arquitetura deste projeto foi submetida a testes rigorosos de _benchmark_ cruzando o poder de processamento (2, 4 e 6 núcleos) com a **geometria física dos dados** no disco. A conclusão provou empiricamente que a injeção bruta de hardware (_Scale-Up_) sofre retornos decrescentes (Lei de Amdahl) se os dados estiverem fragmentados.
+
+Ao implementar esteiras de **DataOps** para a compactação automatizada dos dados, consolidando micro-segmentos em blocos físicos otimizados, o sistema alcançou um desempenho notável: um ambiente estrangulado de apenas 2 núcleos lendo a base compactada revelou-se **~14 vezes mais rápido** do que um cluster em potência máxima tentando ler dados fragmentados. A latência analítica sobre uma base de ~3,1 milhões de registros foi esmagada para **~35 milissegundos**.
+
+---
+
+## 🏗️ Arquitetura do Pipeline
+
+O fluxo de dados foi desenhado para ser resiliente e escalável, orquestrado inteiramente via containers Docker:
+
+1. **Ingestão Otimizada:** Scripts Python extraem dados de fontes governamentais (INPE BDQueimadas e API NASA POWER). O processamento utiliza técnicas de _chunking_ para evitar o esgotamento de memória (OOM) ao lidar com arquivos CSVs massivos.
+2. **Mensageria (Apache Kafka):** Atua como um _buffer_ de resiliência (desacoplamento). Garante que picos extremos de dados gerados por desastres em larga escala não derrubem o banco de dados.
+3. **Motor Analítico (Apache Druid):** O coração OLAP do projeto. Indexa os dados utilizando compressão LZ4 e bitmaps _Roaring_, permitindo agregações temporais e cálculos geoespaciais ultrarrápidos.
+4. **Camada de Visualização (Apache Superset):** Consome os dados do Druid para renderizar painéis táticos, mapas de calor interativos e tabelas de priorização em tempo real.
+
+---
+
+## 🎯 Casos de Uso: Os Eixos de Operação
+
+Os _dashboards_ embutidos no Apache Superset foram projetados com foco em UX analítico para três autarquias específicas:
+
+- ⚡ **Operador Nacional do Sistema (ONS):** Prevenção de blecautes. Cruzamento de polígonos de calor com a malha de linhas de transmissão de alta voltagem, ranqueando as infraestruturas com maior risco eletromagnético e de ruptura de cabos.
+- 🏹 **Proteção Territorial (FUNAI / IBAMA):** Salvaguarda de biomas. Matrizes de alerta que filtram anomalias térmicas (FRP - _Fire Radiative Power_) estritamente dentro das delimitações de Terras Indígenas cadastradas.
+- 🚒 **Comando da Defesa Civil:** Alocação de viaturas e evacuação. Mapas geoespaciais de calor de alta densidade e curvas temporais de contágio para prever o pico diário do fogo em municípios em estado de alerta.
+
+---
+
+## 🚀 Como Executar o Projeto Localmente
+
+O ambiente foi empacotado para ser 100% reprodutível em qualquer máquina que suporte conteinerização.
+
+### 1. Pré-requisitos
+
+- Docker e Docker Compose instalados.
+- Recomendado: Mínimo de 8GB de RAM dedicados ao Docker.
+
+### 2. Subindo a Infraestrutura Core
+
+Clone o repositório e inicialize a rede de containers (Zookeeper, Kafka, Druid, PostgreSQL e Superset):
 
 ```bash
+# Inicia todos os serviços em segundo plano
 docker compose up -d
 ```
+
+# 3.1 Criar o usuário administrador do CCO
+
+docker exec -it superset superset fab create-admin \
+ --username admin \
+ --firstname Admin \
+ --lastname CCO \
+ --email admin@superset.com \
+ --password admin
+
+# 3.2 Atualizar as migrações do banco de dados interno
+
+docker exec -it superset superset db upgrade
+
+# 3.3 Inicializar papéis e permissões padrão
+
+docker exec -it superset superset init
+
+# 4. Acessando as Interfaces
+
+Com tudo rodando, acesse através do seu navegador:
+
+    🗄️ Apache Druid (Console de Ingestão e SQL): http://localhost:8888
+
+    📊 Apache Superset (Dashboards Operacionais): http://localhost:8088
+
+        Login: admin
+
+        Senha: admin
+
+Este projeto foi desenvolvido por Gabriel Gonçalves Sampaio como parte de pesquisa vinculada ao curso de Engenharia de Computação da Universidade Federal de Itajubá (UNIFEI).
+
+A pesquisa documentada neste repositório explora a intersecção entre a Engenharia de Dados Moderna, o planejamento de hardware e a visualização tática de dados aplicados a cenários de resposta a crises.
