@@ -64,20 +64,20 @@ docker compose up -d
 
 # 3.1 Criar o usuário administrador do CCO
 
-docker exec -it superset superset fab create-admin \
- --username admin \
- --firstname Admin \
- --lastname CCO \
- --email admin@superset.com \
- --password admin
+    docker exec -it superset superset fab create-admin \
+    --username admin \
+    --firstname Admin \
+    --lastname CCO \
+    --email admin@superset.com \
+    --password admin
 
 # 3.2 Atualizar as migrações do banco de dados interno
 
-docker exec -it superset superset db upgrade
+    docker exec -it superset superset db upgrade
 
 # 3.3 Inicializar papéis e permissões padrão
 
-docker exec -it superset superset init
+    docker exec -it superset superset init
 
 # 4. Acessando as Interfaces
 
