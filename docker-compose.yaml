@@ -150,18 +150,19 @@ services:
     env_file:
       - environment
     environment:
-      JAVA_OPTS: "-Xms256m -Xmx256m -XX:MaxDirectMemorySize=512m"
-      druid_processing_buffer_sizeBytes: 50000000
-      druid_processing_numThreads: 1
-      druid_processing_numMergeBuffers: 2
+      # Mantemos 1.5G de RAM, mas otimizamos a memória direta para os cálculos
+      JAVA_OPTS: "-Xms256m -Xmx512m -XX:MaxDirectMemorySize=768m"
+      druid_processing_buffer_sizeBytes: 100000000  # Dobrei o buffer de leitura (100MB)
+      druid_processing_numThreads: 3                # 3 NÚCLEOS DE PROCESSAMENTO!
+      druid_processing_numMergeBuffers: 3           # 3 buffers de fusão de dados
       TZ: America/Sao_Paulo
     networks:
       - druid-net
     deploy:
       resources:
         limits:
-          cpus: '1.0'
-          memory: 1G
+          cpus: '3.0'                               # LIBERANDO 3 CORES DO HOST
+          memory: 1.5G
 
   historical:
     image: apache/druid:34.0.0
@@ -181,18 +182,18 @@ services:
     env_file:
       - environment
     environment:
-      JAVA_OPTS: "-Xms256m -Xmx256m -XX:MaxDirectMemorySize=512m"
-      druid_processing_buffer_sizeBytes: 50000000
-      druid_processing_numThreads: 1
-      druid_processing_numMergeBuffers: 2
+      JAVA_OPTS: "-Xms256m -Xmx512m -XX:MaxDirectMemorySize=768m"
+      druid_processing_buffer_sizeBytes: 100000000
+      druid_processing_numThreads: 3                # 3 NÚCLEOS PARA VARREDURA
+      druid_processing_numMergeBuffers: 3
       TZ: America/Sao_Paulo
     networks:
       - druid-net
     deploy:
       resources:
         limits:
-          cpus: '1.0'
-          memory: 1G
+          cpus: '3.0'                               # LIBERANDO 3 CORES DO HOST
+          memory: 1.5G
 
   middlemanager:
     image: apache/druid:34.0.0
@@ -213,17 +214,17 @@ services:
     env_file:
       - environment
     environment:
-      JAVA_OPTS: "-Xms128m -Xmx128m"
+      JAVA_OPTS: "-Xms64m -Xmx128m"
       druid_worker_capacity: 1
-      druid_indexer_runner_javaOpts: "-Xms256m -Xmx256m -XX:MaxDirectMemorySize=128m"
+      druid_indexer_runner_javaOpts: "-Xms128m -Xmx128m -XX:MaxDirectMemorySize=64m"
       TZ: America/Sao_Paulo
     networks:
       - druid-net
     deploy:
       resources:
         limits:
-          cpus: '1.0'
-          memory: 768M
+          cpus: '0.5'           # ESTRANGULADO: A Ingestão já acabou, não precisamos dele roubando CPU
+          memory: 512M          # RAM reduzida para poupar a máquina host
 
   router:
     image: apache/druid:34.0.0

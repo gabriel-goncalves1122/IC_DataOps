@@ -9,9 +9,9 @@ import statistics
 # =====================================================================
 DRUID_SQL_URL = "http://localhost:8888/druid/v2/sql"
 
-# Mapeamento das Consultas Estratégicas
+# Mapeamento com Nomes Refletindo o Estado: 6.518 Segmentos + 2 Núcleos
 QUERIES = {
-    "Bench_1_Serie_Temporal": """
+    "Bench_1_Serie_Temporal_6518Seg_2Cores": """
         SELECT 
           TIME_FLOOR(__time, 'PT1H') AS janela_hora, 
           SUM(total_focos) AS volume_focos_hora, 
@@ -22,7 +22,7 @@ QUERIES = {
         ORDER BY 1 DESC
         LIMIT 100
     """,
-    "Bench_2_Alta_Cardinalidade": """
+    "Bench_2_Alta_Cardinalidade_6518Seg_2Cores": """
         SELECT 
           municipio, 
           bioma, 
@@ -32,7 +32,7 @@ QUERIES = {
         ORDER BY total_focos DESC 
         LIMIT 50
     """,
-    "Bench_3_Filtros_Complexos": """
+    "Bench_3_Filtros_Complexos_6518Seg_2Cores": """
         SELECT 
           satelite,
           COUNT(*) as fatias_de_minuto_processadas,
@@ -43,7 +43,7 @@ QUERIES = {
           AND em_terra_indigena = 'true'
         GROUP BY 1
     """,
-    "BI_1_ONS_Infraestrutura": """
+    "BI_1_ONS_Infraestrutura_6518Seg_2Cores": """
         SELECT 
           linha_afetada, 
           estado,
@@ -56,7 +56,7 @@ QUERIES = {
         ORDER BY ocorrencias_criticas DESC 
         LIMIT 15
     """,
-    "BI_2_FUNAI_Terras_Indigenas": """
+    "BI_2_FUNAI_Terras_Indigenas_6518Seg_2Cores": """
         SELECT 
           nome_ti, 
           estado, 
@@ -69,7 +69,7 @@ QUERIES = {
         ORDER BY pico_energia_frp DESC 
         LIMIT 10
     """,
-    "BI_3_Defesa_Civil_Risco": """
+    "BI_3_Defesa_Civil_Risco_6518Seg_2Cores": """
         SELECT 
           estado, 
           risco_eletrico, 
@@ -82,24 +82,12 @@ QUERIES = {
 }
 
 def run_query(query_str, use_cache=False):
-    """Executa a query via REST API controlando o uso do Cache."""
-    payload = {
-        "query": query_str,
-        "resultFormat": "object",
-        "context": {
-            # O segredo do Benchmark: Desliga o cache para simular Cold Start real
-            "useCache": use_cache,
-            "populateCache": use_cache
-        }
-    }
+    payload = {"query": query_str, "resultFormat": "object", "context": {"useCache": use_cache, "populateCache": use_cache}}
     headers = {"Content-Type": "application/json"}
-    
     start_time = time.time()
     response = requests.post(DRUID_SQL_URL, json=payload, headers=headers)
     end_time = time.time()
-
     elapsed_ms = (end_time - start_time) * 1000
-
     if response.status_code == 200:
         return elapsed_ms, response.json()
     else:
@@ -107,35 +95,27 @@ def run_query(query_str, use_cache=False):
         return elapsed_ms, []
 
 def main():
-    print("="*70)
-    print(" ⚡ INICIANDO BENCHMARK DE PERFORMANCE DO APACHE DRUID (7 RODADAS) ⚡")
-    print("="*70)
+    print("="*80)
+    print(" ⚡ BENCHMARK: DADOS FRAGMENTADOS (6.518 SEGMENTOS) + CPU ESTRANGULADA (2 NÚCLEOS) ⚡")
+    print("="*80)
     
-    output_dir = "data/results"
+    output_dir = "data/results/tests"
     os.makedirs(output_dir, exist_ok=True)
     metrics = []
-
     RODADAS = 7
 
     for name, query in QUERIES.items():
         print(f"\n🔍 Executando: {name}")
 
-        # ==========================================
-        # 1. COLD STARTS (Cache Desligado)
-        # ==========================================
         print(f"   ❄️  Executando {RODADAS} rodadas COLD START (Lendo do Disco)...")
         cold_times = []
         for i in range(RODADAS):
             tempo, _ = run_query(query, use_cache=False)
             cold_times.append(tempo)
-            time.sleep(0.2) # Pequena pausa para não afogar o SO
+            time.sleep(0.2)
         
         avg_cold = statistics.mean(cold_times)
 
-        # ==========================================
-        # 2. WARM STARTS (Cache Ligado)
-        # ==========================================
-        # "Gole de Aquecimento": Roda 1 vez para popular o cache do Druid
         _, _ = run_query(query, use_cache=True)
         
         print(f"   🔥 Executando {RODADAS} rodadas WARM START (Lendo da Memória RAM)...")
@@ -149,50 +129,29 @@ def main():
         avg_warm = statistics.mean(warm_times)
         linhas_retornadas = len(dados_finais) if dados_finais else 0
 
-        # Exporta o CSV com os dados reais desta consulta
         if dados_finais:
             df_result = pd.DataFrame(dados_finais)
             df_result.to_csv(f"{output_dir}/{name}.csv", index=False)
 
-        # Calcula o ganho em %
         ganho_cache = round(((avg_cold - avg_warm) / avg_cold) * 100, 2) if avg_cold > 0 else 0
 
-        # Salva o resumo para a tabela final
         metrics.append({
-            "Nome_Consulta": name,
-            "Cold_1_ms": round(cold_times[0], 2),
-            "Cold_2_ms": round(cold_times[1], 2),
-            "Cold_3_ms": round(cold_times[2], 2),
-            "Cold_4_ms": round(cold_times[3], 2),
-            "Cold_5_ms": round(cold_times[4], 2),
-            "Cold_6_ms": round(cold_times[5], 2),
-            "Cold_7_ms": round(cold_times[6], 2),
-            "Media_Cold_ms": round(avg_cold, 2),
-            "Warm_1_ms": round(warm_times[0], 2),
-            "Warm_2_ms": round(warm_times[1], 2),
-            "Warm_3_ms": round(warm_times[2], 2),
-            "Warm_4_ms": round(warm_times[3], 2),
-            "Warm_5_ms": round(warm_times[4], 2),
-            "Warm_6_ms": round(warm_times[5], 2),
-            "Warm_7_ms": round(warm_times[6], 2),
-            "Media_Warm_ms": round(avg_warm, 2),
-            "Linhas_Retornadas": linhas_retornadas,
-            "Ganho_Cache_%": ganho_cache
+            "Nome_Consulta": name, "Cold_1_ms": round(cold_times[0], 2), "Cold_2_ms": round(cold_times[1], 2), "Cold_3_ms": round(cold_times[2], 2),
+            "Cold_4_ms": round(cold_times[3], 2), "Cold_5_ms": round(cold_times[4], 2), "Cold_6_ms": round(cold_times[5], 2), "Cold_7_ms": round(cold_times[6], 2),
+            "Media_Cold_ms": round(avg_cold, 2), "Warm_1_ms": round(warm_times[0], 2), "Warm_2_ms": round(warm_times[1], 2), "Warm_3_ms": round(warm_times[2], 2),
+            "Warm_4_ms": round(warm_times[3], 2), "Warm_5_ms": round(warm_times[4], 2), "Warm_6_ms": round(warm_times[5], 2), "Warm_7_ms": round(warm_times[6], 2),
+            "Media_Warm_ms": round(avg_warm, 2), "Linhas_Retornadas": linhas_retornadas, "Ganho_Cache_%": ganho_cache
         })
 
         print(f"   📊 Média Cold: {avg_cold:.2f} ms | Média Warm: {avg_warm:.2f} ms")
-        print(f"   🚀 Otimização: {ganho_cache}% mais rápido")
+        print(f"   🚀 Otimização do Cache: {ganho_cache}%")
 
-    # =====================================================================
-    # SALVA O RELATÓRIO ESTATÍSTICO COMPLETO
-    # =====================================================================
     df_metrics = pd.DataFrame(metrics)
-    metric_file = f"{output_dir}/relatorio_estatistico_druid.csv"
+    metric_file = f"{output_dir}/relatorio_estatistico_6518Seg_2Cores.csv"
     df_metrics.to_csv(metric_file, index=False)
     
-    print("-" * 70)
-    print(f"✅ Benchmark rigoroso concluído! Relatório completo salvo em:")
-    print(f"   -> {metric_file}")
+    print("-" * 80)
+    print(f"✅ Relatório de testes salvo com sucesso em:\n   -> {metric_file}")
 
 if __name__ == "__main__":
     main()
