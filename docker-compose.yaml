@@ -1,34 +1,43 @@
 version: '3.8'
 
-# Os volumes nomeados garantem que os dados persistam sem depender
-# de pastas específicas no computador de quem está rodando.
+# ==============================================================================
+# VOLUMES NOMEADOS
+# Garantem que os dados do banco (metadados e segmentos) persistam no seu disco rígido,
+# mesmo que os containers sejam destruídos ou reiniciados.
+# ==============================================================================
 volumes:
-  metadata_data: {}
-  middle_var: {}
-  historical_var: {}
-  broker_var: {}
-  coordinator_var: {}
-  router_var: {}
-  druid_shared: {}
+  metadata_data: {}   # Guarda o banco PostgreSQL (Metadados do Druid e Superset)
+  middle_var: {}      # Guarda os logs e tarefas em andamento de ingestão
+  historical_var: {}  # O MAIS IMPORTANTE: Guarda os segmentos de dados (Tabelas Fato e Dimensões)
+  broker_var: {}      # Cache de consultas do Broker
+  coordinator_var: {} # Logs de coordenação de onde cada dado está
+  router_var: {}      # Logs da interface Web
+  druid_shared: {}    # Pasta compartilhada para o Deep Storage (onde o Druid salva backups)
 
+# ==============================================================================
+# REDE
+# Cria uma rede isolada para que os containers conversem entre si usando seus nomes
+# (ex: o Kafka acha o Zookeeper apenas chamando "zookeeper-kafka:2181").
+# ==============================================================================
 networks:
   druid-net:
     driver: bridge
 
 services:
-  # =========================================
-  # 1. ECOSSISTEMA KAFKA (Ultra-Leve)
-  # =========================================
+  # ==============================================================================
+  # 1. ECOSSISTEMA KAFKA (MENSAGERIA DE EVENTOS)
+  # Responsável por receber o streaming dos 3 milhões de focos de incêndio.
+  # ==============================================================================
   zookeeper-kafka:
     image: confluentinc/cp-zookeeper:7.4.1
     container_name: zookeeper-kafka
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
-      KAFKA_HEAP_OPTS: "-Xms128M -Xmx128M"
+      KAFKA_HEAP_OPTS: "-Xms128M -Xmx128M" # Memória baixa, pois gerencia apenas 1 broker
       TZ: America/Sao_Paulo
     ports:
-      - "22181:2181"
+      - "22181:2181" # Exposto na 22181 para não dar conflito com o ZK do Druid
     networks:
       - druid-net
     deploy:
@@ -41,11 +50,12 @@ services:
     image: confluentinc/cp-kafka:7.4.1
     container_name: kafka
     ports:
-      - "9092:9092"
-      - "29092:29092"
+      - "9092:9092"   # Comunicação interna (Docker)
+      - "29092:29092" # Comunicação externa (Seu Python rodando no Ubuntu)
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper-kafka:2181
+      # Configuração de portas para aceitar envios de dentro e fora do Docker
       KAFKA_LISTENERS: "PLAINTEXT://0.0.0.0:9092,PLAINTEXT_HOST://0.0.0.0:29092"
       KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092"
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: "PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT"
@@ -53,7 +63,7 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-      KAFKA_HEAP_OPTS: "-Xms256M -Xmx256M"
+      KAFKA_HEAP_OPTS: "-Xms256M -Xmx256M" # Limitado para poupar RAM do Host
       TZ: America/Sao_Paulo
     depends_on:
       - zookeeper-kafka
@@ -65,9 +75,12 @@ services:
           cpus: '0.75'
           memory: 512M
 
-  # =========================================
-  # 2. ECOSSISTEMA DRUID E METADADOS
-  # =========================================
+  # ==============================================================================
+  # 2. ECOSSISTEMA APACHE DRUID E METADADOS (MOTOR OLAP)
+  # ==============================================================================
+  
+  # PostgreSQL: O "Cérebro" de Metadados. O Druid anota aqui onde cada pedaço 
+  # de dado (segmento) foi salvo. O Superset também salva os dashboards aqui.
   postgres:
     container_name: postgres
     image: postgres:latest
@@ -88,6 +101,7 @@ services:
           cpus: '0.50'
           memory: 384M
 
+  # Zookeeper do Druid: Eleição de líderes e descoberta de nós.
   zookeeper:
     container_name: zookeeper
     image: zookeeper:3.5.10
@@ -105,6 +119,7 @@ services:
           cpus: '0.25'
           memory: 384M
 
+  # Coordinator: Diz ao Historical Node qual dado ele deve carregar ou descartar.
   coordinator:
     image: apache/druid:34.0.0
     container_name: coordinator
@@ -112,6 +127,7 @@ services:
     volumes:
       - druid_shared:/opt/shared
       - coordinator_var:/opt/druid/var
+      - ./data:/opt/data # MAPEAMENTO LOCAL: Permite ler os CSVs gerados pelo Python
     depends_on:
       - zookeeper
       - postgres
@@ -132,6 +148,8 @@ services:
           cpus: '0.50'
           memory: 512M
 
+  # Broker: O nó que recebe a Query SQL do Superset, quebra em pedaços menores,
+  # manda para os Historicals, recebe os resultados, junta tudo (merge) e devolve.
   broker:
     image: apache/druid:34.0.0
     container_name: broker
@@ -139,6 +157,7 @@ services:
     volumes:
       - broker_var:/opt/druid/var
       - druid_shared:/opt/shared
+      - ./data:/opt/data # MAPEAMENTO LOCAL
     depends_on:
       - zookeeper
       - postgres
@@ -150,20 +169,24 @@ services:
     env_file:
       - environment
     environment:
-      # Mantemos 1.5G de RAM, mas otimizamos a memória direta para os cálculos
+      # MaxDirectMemorySize: O "Off-Heap". É na memória direta que o Druid faz os Joins rápidos.
       JAVA_OPTS: "-Xms256m -Xmx512m -XX:MaxDirectMemorySize=768m"
-      druid_processing_buffer_sizeBytes: 100000000  # Dobrei o buffer de leitura (100MB)
-      druid_processing_numThreads: 3                # 3 NÚCLEOS DE PROCESSAMENTO!
-      druid_processing_numMergeBuffers: 3           # 3 buffers de fusão de dados
+      druid_processing_buffer_sizeBytes: 100000000  # Buffer de leitura pesado (100MB) para Joins
+      druid_processing_numThreads: 3                # Permite processar queries em 3 núcleos simultâneos
+      druid_processing_numMergeBuffers: 3           # Buffers paralelos para agregação final
+      druid_query_subquery_maxBytes: "auto"
+      druid_server_http_maxSubqueryRows: 5000000  # Limite ampliado para 5 Milhões
       TZ: America/Sao_Paulo
     networks:
       - druid-net
     deploy:
       resources:
         limits:
-          cpus: '3.0'                               # LIBERANDO 3 CORES DO HOST
+          cpus: '3.0'                               # Nó de alto desempenho
           memory: 1.5G
 
+  # Historical: O "Músculo" do Druid. É aqui que os arquivos fatiados ficam guardados 
+  # e onde a leitura bruta dos dados do SSD/RAM acontece.
   historical:
     image: apache/druid:34.0.0
     container_name: historical
@@ -171,6 +194,7 @@ services:
     volumes:
       - druid_shared:/opt/shared
       - historical_var:/opt/druid/var
+      - ./data:/opt/data # MAPEAMENTO LOCAL
     depends_on: 
       - zookeeper
       - postgres
@@ -184,7 +208,7 @@ services:
     environment:
       JAVA_OPTS: "-Xms256m -Xmx512m -XX:MaxDirectMemorySize=768m"
       druid_processing_buffer_sizeBytes: 100000000
-      druid_processing_numThreads: 3                # 3 NÚCLEOS PARA VARREDURA
+      druid_processing_numThreads: 3                # Usa 3 threads para varrer o disco rápido
       druid_processing_numMergeBuffers: 3
       TZ: America/Sao_Paulo
     networks:
@@ -192,9 +216,11 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '3.0'                               # LIBERANDO 3 CORES DO HOST
+          cpus: '3.0'                               # Nó de alto desempenho
           memory: 1.5G
 
+  # MiddleManager: O "Trabalhador" de Ingestão. Fica escutando o Kafka e criando os segmentos
+  # iniciais. Depois ele envia o dado consolidado para o Historical.
   middlemanager:
     image: apache/druid:34.0.0
     container_name: middlemanager
@@ -202,20 +228,21 @@ services:
     volumes:
       - druid_shared:/opt/shared
       - middle_var:/opt/druid/var
+      - ./data:/opt/data # MAPEAMENTO LOCAL: Crucial para a Ingestão Batch ler o seu disco
     depends_on: 
       - zookeeper
       - postgres
       - coordinator
     ports:
       - "8091:8091"
-      - "8100-8105:8100-8105"
+      - "8100-8105:8100-8105" # Portas das tarefas de ingestão individuais (Peons)
     command:
       - middleManager
     env_file:
       - environment
     environment:
       JAVA_OPTS: "-Xms64m -Xmx128m"
-      druid_worker_capacity: 1
+      druid_worker_capacity: 1 # Só permite rodar 1 tarefa por vez (para não travar seu PC)
       druid_indexer_runner_javaOpts: "-Xms128m -Xmx128m -XX:MaxDirectMemorySize=64m"
       TZ: America/Sao_Paulo
     networks:
@@ -223,9 +250,10 @@ services:
     deploy:
       resources:
         limits:
-          cpus: '0.5'           # ESTRANGULADO: A Ingestão já acabou, não precisamos dele roubando CPU
-          memory: 512M          # RAM reduzida para poupar a máquina host
+          cpus: '0.5'           # Estrangulado: A função dele é simples (ler e repassar)
+          memory: 512M          
 
+  # Router: A Interface de Usuário (Web Console) e Roteador de APIs unificado.
   router:
     image: apache/druid:34.0.0
     container_name: router
@@ -233,6 +261,7 @@ services:
     volumes:
       - router_var:/opt/druid/var
       - druid_shared:/opt/shared
+      - ./data:/opt/data # MAPEAMENTO LOCAL
     depends_on:
       - zookeeper
       - postgres
@@ -240,7 +269,7 @@ services:
       - broker
       - historical
     ports:
-      - "8888:8888"
+      - "8888:8888" # PORTA PARA ACESSAR A INTERFACE WEB DO DRUID
     command:
       - router
     env_file:
@@ -256,11 +285,12 @@ services:
           cpus: '0.25'
           memory: 256M
 
-  # =========================================
-  # 3. VISUALIZAÇÃO (SUPERSET)
-  # =========================================
+  # ==============================================================================
+  # 3. VISUALIZAÇÃO (APACHE SUPERSET)
+  # Onde os Dashboards são construídos com os mapas deck.gl consultando o Druid.
+  # ==============================================================================
   superset:
-    build: ./docker
+    build: ./docker # Compila usando o Dockerfile que tem o driver do Druid (pydruid)
     image: custom-superset:1.0
     container_name: superset
     ports:

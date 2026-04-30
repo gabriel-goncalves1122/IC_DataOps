@@ -1,37 +1,47 @@
 # ==========================================
-# PYTHON E CACHE
+# 1. AMBIENTES VIRTUAIS E CACHE PYTHON
 # ==========================================
+venv/
+.venv/
+env/
 __pycache__/
 *.py[cod]
 *$py.class
 .pytest_cache/
 
 # ==========================================
-# AMBIENTES VIRTUAIS
+# 2. DADOS MASSIVOS E GEOGRÁFICOS (CRÍTICO)
 # ==========================================
-venv/
-.venv/
-env/
-ENV/
+# Ignora todo o conteúdo das subpastas de dados
+data/geo/*
+data/processed/*
+data/raw/*
+data/results/*
 
-# ==========================================
-# DADOS MASSIVOS E CONTROLE DE ESTADO (CRÍTICO)
-# ==========================================
-# Ignora datasets pesados
+# Ignora extensões de arquivos de dados pesados em qualquer lugar
 *.csv
-*.zip
+*.xlsx
+*.geojson
 *.parquet
 *.json.gz
+*.shp
+*.shx
+*.dbf
+*.prj
 
-# Ignora a pasta de dados brutos completamente
-data/raw/
-
-# Ignora o arquivo de controle de estado do produtor Kafka
+# Arquivo de controle de estado
 checkpoint_ingestao.txt
-data/raw/checkpoint_ingestao.txt
 
 # ==========================================
-# VOLUMES DOCKER (INFRAESTRUTURA)
+# 3. KAFKA E LOGS
+# ==========================================
+ApacheKafka/
+logs/
+*.log
+*.out
+
+# ==========================================
+# 4. VOLUMES DOCKER (Caso mapeados localmente)
 # ==========================================
 metadata_data/
 middle_var/
@@ -40,20 +50,25 @@ broker_var/
 coordinator_var/
 router_var/
 druid_shared/
-**/volumes/
 
 # ==========================================
-# LOGS E TEMPORÁRIOS
+# 5. IDEs E SISTEMA OPERACIONAL
 # ==========================================
-*.log
-logs/
-*.out
+.vscode/
+.idea/
 .DS_Store
 Thumbs.db
 ~$*
 
 # ==========================================
-# IDEs E EDITORES
+# 6. EXCEÇÕES (O QUE DEVE SER VERSIONADO)
 # ==========================================
-.vscode/
-.idea/
+# Mantém a estrutura de pastas de dados no Git (requer criar um arquivo .gitkeep vazio nelas)
+!data/geo/.gitkeep
+!data/processed/.gitkeep
+!data/raw/.gitkeep
+!data/results/.gitkeep
+
+# Força o Git a aceitar os arquivos JSON do Druid e o ZIP do Superset na pasta infrastructure
+!infrastructure/druid_specs/*.json
+!infrastructure/superset/*.zip
